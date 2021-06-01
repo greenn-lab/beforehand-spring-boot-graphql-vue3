@@ -1,0 +1,18 @@
+extend type Query {
+    todos(page: Int!, size: Int): [Todo]
+}
+
+type Todo {
+    id: ID!
+    title: String!
+    completed: Date
+}
+
+extend type Mutation {
+    addTodos(input: TodoInput): Todo
+}
+
+input TodoInput {
+    title: String!
+    completed: Date
+}

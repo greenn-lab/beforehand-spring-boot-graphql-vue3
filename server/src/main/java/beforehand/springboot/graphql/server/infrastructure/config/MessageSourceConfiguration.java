@@ -33,6 +33,8 @@ public class MessageSourceConfiguration {
     final Resource[] resources = resolver.getResources("classpath:i18n/**/*.xml");
     final List<String> sources = new ArrayList<>();
 
+    sources.add("classpath*:org/hibernate/validator/ValidationMessages");
+
     String group = "*";
     for (Resource res : resources) {
       final String filename = res.getFilename();
