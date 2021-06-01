@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <entry key="error">오류가 났어요.</entry>
+  <entry key="error.input">잘못된 입력값이네요.</entry>
+</properties>
