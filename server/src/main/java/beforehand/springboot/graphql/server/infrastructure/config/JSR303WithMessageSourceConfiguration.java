@@ -1,4 +1,4 @@
-package beforehand.springboot.graphql.server.infrastructure;
+package beforehand.springboot.graphql.server.infrastructure.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;

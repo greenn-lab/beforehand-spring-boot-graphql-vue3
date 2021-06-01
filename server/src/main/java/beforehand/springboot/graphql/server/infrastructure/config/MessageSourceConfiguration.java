@@ -1,4 +1,4 @@
-package beforehand.springboot.graphql.server.infrastructure;
+package beforehand.springboot.graphql.server.infrastructure.config;
 
 import java.io.IOException;
 import java.util.ArrayList;
