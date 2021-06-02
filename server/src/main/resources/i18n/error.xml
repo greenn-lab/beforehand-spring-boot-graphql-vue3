@@ -3,4 +3,11 @@
 <properties>
   <entry key="error">오류가 났어요.</entry>
   <entry key="error.input">잘못된 입력값이네요.</entry>
+
+  <!--
+  jsr303
+   -->
+  <entry key="javax.validation.constraints.NotNull.message">값을 채워주세요.</entry>
+  <entry key="javax.validation.constraints.NotEmpty.message">값을 채워주세요.</entry>
+  <entry key="javax.validation.constraints.Size.message">길이가 맞지 않아요.</entry>
 </properties>
