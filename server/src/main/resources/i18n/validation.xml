@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <entry key="javax.validation.constraints.NotNull.message">값을 채워주세요.</entry>
+  <entry key="javax.validation.constraints.NotEmpty.message">값을 채워주세요.</entry>
+  <entry key="javax.validation.constraints.Size.message">길이가 맞지 않아요.</entry>
+</properties>
