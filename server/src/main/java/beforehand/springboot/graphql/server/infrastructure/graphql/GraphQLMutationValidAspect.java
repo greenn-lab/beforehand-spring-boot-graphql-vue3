@@ -1,8 +1,5 @@
 package beforehand.springboot.graphql.server.infrastructure.graphql;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -10,53 +7,71 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
-import org.springframework.web.bind.MethodArgumentNotValidException;
+
+import javax.validation.Valid;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 @Component
 @Aspect
 @RequiredArgsConstructor
 public class GraphQLMutationValidAspect {
 
-  private final SpringValidatorAdapter validator;
+    private final SpringValidatorAdapter validator;
 
 
-  @Pointcut("@target(org.springframework.stereotype.Service) || @target(org.springframework.stereotype.Component)")
-  public void componentClass() {
-    // use to pointcut
-  }
+    @Pointcut("@target(org.springframework.stereotype.Service) || @target(org.springframework.stereotype.Component)")
+    public void componentClass() {
+        // use to pointcut
+    }
 
-  @Pointcut("execution(* *(.., @org.springframework.validation.annotation.Validated (*), ..))")
-  public void hasValidatedArgumentMethods() {
-    // use to pointcut
-  }
+    @Pointcut("execution(* *(.., @javax.validation.Valid (*), ..))")
+    public void hasValidArgumentMethods() {
+        // use to pointcut
+    }
 
-  @Before("componentClass() && hasValidatedArgumentMethods()")
-  public void before(JoinPoint joinPoint) throws MethodArgumentNotValidException {
-    final Signature signature = joinPoint.getSignature();
-    final Method method = ((MethodSignature) signature).getMethod();
-    final Parameter[] parameters = method.getParameters();
+    @Pointcut("execution(* *(.., @org.springframework.validation.annotation.Validated (*), ..))")
+    public void hasValidatedArgumentMethods() {
+        // use to pointcut
+    }
 
-    for (int i = 0; i < parameters.length; i++) {
-      final MethodParameter methodParameter = new MethodParameter(method, i);
-      if (methodParameter.hasParameterAnnotation(Validated.class)) {
-        final Object target = joinPoint.getArgs()[i];
-        final String name = Optional
-            .ofNullable(methodParameter.getParameterName())
-            .orElse(parameters[i].getName());
+    @Before("componentClass() && (hasValidArgumentMethods() || hasValidatedArgumentMethods())")
+    public void before(JoinPoint joinPoint) throws GraphQLMutationNotValidException {
+        final Signature signature = joinPoint.getSignature();
+        final Method method = ((MethodSignature) signature).getMethod();
+        final Parameter[] parameters = method.getParameters();
+        final Object[] arguments = joinPoint.getArgs();
 
-        final BindingResult errors = new BeanPropertyBindingResult(target, name);
-        validator.validate(target, errors);
+        int i = 0;
+        do {
+            validate(parameters[i], arguments[i]);
+        }
+        while (i++ < arguments.length);
+    }
+
+    private void validate(Parameter parameter, Object target) throws GraphQLMutationNotValidException {
+        Object[] groups = null;
+
+        if (parameter.isAnnotationPresent(Valid.class)) {
+            groups = new Class[0];
+        }
+
+        if (parameter.isAnnotationPresent(Validated.class)) {
+            groups = parameter.getAnnotation(Validated.class).value();
+        }
+
+        if (groups == null) return;
+
+        final BindingResult errors = new BeanPropertyBindingResult(target, "");
+        validator.validate(target, errors, groups);
 
         if (errors.hasErrors()) {
-          throw new GraphQLMutationNotValidException(methodParameter, errors);
+            throw new GraphQLMutationNotValidException(errors);
         }
-      }
     }
-  }
 }
