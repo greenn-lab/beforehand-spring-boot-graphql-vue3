@@ -22,11 +22,11 @@ public class TodoGraphQLService implements GraphQLQueryResolver, GraphQLMutation
   private int defaultPageSize;
 
 
-  @PreAuthorize("hasRole('MANAGER')")
   public Page<Todo> todos(int page, int size) {
     return repository.findAll(PageRequest.of(page, size < 1 ? defaultPageSize : size));
   }
 
+  @PreAuthorize("hasRole('MANAGER')")
   public Todo addTodos(@Validated Todo.Dto dto) {
     final Todo todo = Todo.Mapper.mapped.by(dto);
     return repository.save(todo);

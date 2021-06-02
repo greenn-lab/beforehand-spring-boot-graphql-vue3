@@ -90,7 +90,7 @@ public class GraphQLConfiguration {
   }
 
   @Bean
-  public GraphQLScalarType dateDefinition() {
+  GraphQLScalarType dateDefinition() {
     return new GraphQLScalarType("Date", "simple date type",
         new Coercing<LocalDate, String>() {
           @Override

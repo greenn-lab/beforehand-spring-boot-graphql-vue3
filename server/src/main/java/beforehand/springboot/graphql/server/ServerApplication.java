@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
@@ -23,6 +24,7 @@ public class ServerApplication {
 
 
   @Bean
+  @Profile("development")
   CommandLineRunner initialize(final TodoRepository repository) {
     return args -> Arrays.asList(
         "red", "orange", "yellow", "green", "blue", "indigo", "purple",
