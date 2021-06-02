@@ -25,7 +25,7 @@ public class ServerApplication {
   @Bean
   CommandLineRunner initialize(final TodoRepository repository) {
     return args -> Arrays.asList(
-        "red", "orange", "yello", "green", "blue", "indigo", "purple",
+        "red", "orange", "yellow", "green", "blue", "indigo", "purple",
         "gold", "silver", "bronze", "cyan", "magenta", "black", "azure",
         "violet", "gray", "burgundy", "beige"
     ).forEach(color -> repository.save(new Todo(color)));
