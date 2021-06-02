@@ -27,12 +27,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth
         .inMemoryAuthentication()
-        .withUser("reader").password("king123$")
+        .withUser("reader").password("{noop}king123$")
         .roles(Grade.ADMIN.name(), Grade.MANAGER.name(), Grade.WORKER.name(), Grade.INTERN.name())
         .and()
-        .withUser("tester").password("test123$")
+        .withUser("tester").password("{noop}test123$")
         .roles(Grade.MANAGER.name()).and()
-        .withUser("junior").password("baby123$")
+        .withUser("junior").password("{noop}baby123$")
         .roles(Grade.WORKER.name(), Grade.INTERN.name())
     ;
   }
