@@ -2,10 +2,7 @@ package beforehand.springboot.graphql.server.infrastructure.config;
 
 import beforehand.springboot.graphql.server.infrastructure.graphql.GraphQLMutationNotValidException;
 import com.coxautodev.graphql.tools.ObjectMapperConfigurer;
-import com.coxautodev.graphql.tools.ObjectMapperConfigurerContext;
 import com.coxautodev.graphql.tools.SchemaParserOptions;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.collect.ImmutableList;
 import graphql.ExceptionWhileDataFetching;
@@ -23,38 +20,25 @@ import java.lang.reflect.UndeclaredThrowableException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDeniedException;
 
 @Configuration
-@RequiredArgsConstructor
 public class GraphQLConfiguration {
-
-  private final ObjectMapper objectMapper;
-
-  @Bean
-  com.coxautodev.graphql.tools.ObjectMapperConfigurer objectMapperConfigurer() {
-    return new ObjectMapperConfigurer() {
-      @Override
-      public void configure(ObjectMapper mapper, ObjectMapperConfigurerContext context) {
-        mapper
-            .registerModule(new JavaTimeModule())
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-      }
-    };
-  }
 
   @Bean
   SchemaParserOptions schemaParserOptions() {
+    final ObjectMapperConfigurer objectMapperConfigurer =
+        (mapper, context) -> mapper.registerModule(new JavaTimeModule());
+
     return SchemaParserOptions.newOptions()
-        .objectMapperConfigurer(objectMapperConfigurer())
+        .objectMapperConfigurer(objectMapperConfigurer)
         .build();
   }
 
   @Bean
-  public GraphQLErrorHandler errorHandler() {
+  GraphQLErrorHandler errorHandler() {
     return new DefaultGraphQLErrorHandler() {
       @Override
       public List<GraphQLError> processErrors(List<GraphQLError> errors) {
@@ -79,7 +63,7 @@ public class GraphQLConfiguration {
   }
 
   @Bean
-  public GraphQLScalarType dateTimeDefinition() {
+  GraphQLScalarType dateTimeDefinition() {
     return new GraphQLScalarType("DateTime", "simple date-time type",
         new Coercing<LocalDateTime, String>() {
           @Override
