@@ -1,12 +1,17 @@
 spring:
   messages:
     cache-duration: 3
-
   data:
     web:
       pageable:
         default-page-size: 5
-
+  sql:
+    init:
+      schema-locations:
+        - "classpath:db/schema-data-h2.sql"
+  jpa:
+    hibernate:
+      ddl-auto: none
 
 logging:
   pattern:

@@ -15,6 +15,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Setter
 public class EntityAuditor {
 
+  private boolean deleted;
+
   @CreatedBy
   @Column(updatable = false)
   private String creator;

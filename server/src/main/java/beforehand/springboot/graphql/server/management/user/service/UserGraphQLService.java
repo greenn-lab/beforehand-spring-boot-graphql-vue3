@@ -1,7 +1,7 @@
-package beforehand.springboot.graphql.server.todo.service;
+package beforehand.springboot.graphql.server.management.user.service;
 
-import beforehand.springboot.graphql.server.todo.Todo;
-import beforehand.springboot.graphql.server.todo.repository.TodoRepository;
+import beforehand.springboot.graphql.server.management.user.User;
+import beforehand.springboot.graphql.server.management.user.repository.UserRepository;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import lombok.RequiredArgsConstructor;
@@ -14,22 +14,22 @@ import org.springframework.validation.annotation.Validated;
 
 @Service
 @RequiredArgsConstructor
-public class TodoGraphQLService implements GraphQLQueryResolver, GraphQLMutationResolver {
+public class UserGraphQLService implements GraphQLQueryResolver, GraphQLMutationResolver {
 
-  private final TodoRepository repository;
+  private final UserRepository repository;
 
   @Value("${spring.data.web.pageable.default-page-size:10}")
   private int defaultPageSize;
 
 
-  public Page<Todo> todos(int page, int size) {
+  public Page<User> users(int page, int size) {
     return repository.findAll(PageRequest.of(page, size < 1 ? defaultPageSize : size));
   }
 
   @PreAuthorize("hasRole('MANAGER')")
-  public Todo addTodos(@Validated Todo.Dto dto) {
-    final Todo todo = Todo.Mapper.mapped.by(dto);
-    return repository.save(todo);
+  public User saveUser(@Validated User.Dto dto) {
+    final User user = User.Mapper.mapped.by(dto);
+    return repository.save(user);
   }
 
 }
