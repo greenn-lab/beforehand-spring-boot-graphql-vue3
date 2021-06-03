@@ -15,7 +15,7 @@ public class MessageSourceConfiguration {
 
   @Bean
   ReloadableResourceBundleMessageSource messageSource(
-      @Value("${spring.messages.cache-duration}") int cacheDuration
+      @Value("${spring.messages.cache-duration:-1}") int cacheDuration
   ) throws IOException {
     final ReloadableResourceBundleMessageSource
         source = new ReloadableResourceBundleMessageSource();

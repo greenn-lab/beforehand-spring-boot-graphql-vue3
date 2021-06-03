@@ -1,0 +1,13 @@
+spring:
+  messages:
+    cache-duration: 3
+
+  data:
+    web:
+      pageable:
+        default-page-size: 5
+
+
+logging:
+  pattern:
+    console: "%highlight(%-5level) %d{HH:mm:ss.SSS}[%green(%thread)]%magenta(%logger{36}) %msg %n"

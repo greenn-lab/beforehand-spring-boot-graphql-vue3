@@ -24,7 +24,7 @@ public class ServerApplication {
 
 
   @Bean
-  @Profile({"default", "dev"})
+  @Profile("development")
   CommandLineRunner initialize(final TodoRepository repository) {
     return args -> Arrays.asList(
         "red", "orange", "yellow", "green", "blue", "indigo", "purple",

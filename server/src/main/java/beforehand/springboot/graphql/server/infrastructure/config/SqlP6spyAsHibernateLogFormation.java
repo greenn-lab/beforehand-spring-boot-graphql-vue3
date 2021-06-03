@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@Profile({"default", "dev"})
+@Profile("development")
 public class SqlP6spyAsHibernateLogFormation implements MessageFormattingStrategy {
 
   @PostConstruct
