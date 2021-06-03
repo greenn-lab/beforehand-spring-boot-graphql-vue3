@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -17,11 +18,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   AuditorAware<String> securityLinkageAuditorAware() {
     return () -> {
       final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      return Optional.of(
-          authentication == null
-              ? "{ghost}"
-              : authentication.getPrincipal().toString()
-      );
+      if (authentication == null) {
+        return Optional.of("{ghost}");
+      }
+
+      final Object principal = authentication.getPrincipal();
+      if (principal instanceof User) {
+        return Optional.of(((User) principal).getUsername());
+      }
+
+      return Optional.of(principal.toString());
     };
   }
 
@@ -29,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth
         .inMemoryAuthentication()
-        .withUser("reader").password("{noop}king123$")
+        .withUser("leader").password("{noop}king123$")
         .roles(Grade.ADMIN.name(), Grade.MANAGER.name(), Grade.WORKER.name(), Grade.INTERN.name())
         .and()
         .withUser("tester").password("{noop}test123$")
