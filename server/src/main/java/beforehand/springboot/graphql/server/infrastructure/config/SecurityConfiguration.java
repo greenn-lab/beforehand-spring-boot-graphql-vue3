@@ -14,13 +14,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Bean
-  public AuditorAware<String> securityLinkageAuditorAware() {
-    final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    if (authentication == null) {
-      return () -> Optional.of("(ghost)");
-    }
-
-    return () -> Optional.of(authentication.getPrincipal().toString());
+  AuditorAware<String> securityLinkageAuditorAware() {
+    return () -> {
+      final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      return Optional.of(
+          authentication == null
+              ? "{ghost}"
+              : authentication.getPrincipal().toString()
+      );
+    };
   }
 
   @Override
