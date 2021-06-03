@@ -47,11 +47,9 @@ public class GraphQLMutationValidAspect {
         final Parameter[] parameters = method.getParameters();
         final Object[] arguments = joinPoint.getArgs();
 
-        int i = 0;
-        do {
+        for (int i = 0; i < arguments.length; i++) {
             validate(parameters[i], arguments[i]);
         }
-        while (i++ < arguments.length);
     }
 
     private void validate(Parameter parameter, Object target) throws GraphQLMutationNotValidException {
