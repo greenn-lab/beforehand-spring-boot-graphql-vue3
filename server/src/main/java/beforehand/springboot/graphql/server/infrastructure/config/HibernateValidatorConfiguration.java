@@ -2,43 +2,43 @@ package beforehand.springboot.graphql.server.infrastructure.config;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.MessageSourceResourceBundle;
+import org.springframework.security.util.FieldUtils;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator;
 import org.springframework.validation.beanvalidation.MessageSourceResourceBundleLocator;
 
 @Configuration
 @RequiredArgsConstructor
-public class JSR303WithMessageSourceConfiguration {
+public class HibernateValidatorConfiguration {
 
   private final MessageSource messageSource;
+
+  @PostConstruct
+  public void setup() throws IllegalAccessException {
+    final LocaleContextMessageInterpolator messageInterpolator =
+        (LocaleContextMessageInterpolator) localValidatorFactoryBean().getMessageInterpolator();
+
+    final Object targetInterpolatorValue =
+        FieldUtils.getFieldValue(messageInterpolator, "targetInterpolator");
+
+    FieldUtils.setProtectedFieldValue(
+        "defaultResourceBundleLocator",
+        targetInterpolatorValue,
+        new FixupMessageSourceResourceBundleLocator(messageSource));
+  }
 
 
   @Bean
   public LocalValidatorFactoryBean localValidatorFactoryBean() {
-    final LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-    bean.setMessageInterpolator(new ResourceBundleMessageInterpolator(
-        new FixupMessageSourceResourceBundleLocator(messageSource)
-    ));
-//    bean.setValidationMessageSource(messageSource);
-//    bean.setMessageInterpolator(new MessageInterpolator() {
-//      @Override
-//      public String interpolate(String s, Context context) {
-//        return ;
-//      }
-//
-//      @Override
-//      public String interpolate(String s, Context context, Locale locale) {
-//        return s;
-//      }
-//    });
-    return bean;
+    return new LocalValidatorFactoryBean();
   }
+
 
   static class FixupMessageSourceResourceBundleLocator
       extends MessageSourceResourceBundleLocator {
@@ -50,7 +50,6 @@ public class JSR303WithMessageSourceConfiguration {
       this.messageSource = messageSource;
     }
 
-    @NotNull
     @Override
     public ResourceBundle getResourceBundle(Locale locale) {
       return new FixupMessageSourceResourceBundle(messageSource, locale);
