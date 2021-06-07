@@ -63,7 +63,7 @@ public class GraphQLConfiguration {
   }
 
   @Bean
-  GraphQLScalarType dateTimeDefinition() {
+  GraphQLScalarType scalarDateTime() {
     return new GraphQLScalarType("DateTime", "simple date-time type",
         new Coercing<LocalDateTime, String>() {
           @Override
@@ -90,7 +90,7 @@ public class GraphQLConfiguration {
   }
 
   @Bean
-  GraphQLScalarType dateDefinition() {
+  GraphQLScalarType scalarDate() {
     return new GraphQLScalarType("Date", "simple date type",
         new Coercing<LocalDate, String>() {
           @Override
