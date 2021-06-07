@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.Length;
 @Setter
 public class UserNamed {
 
-  @Length(min = 1, message = "is {min} size")
+  @Length(min = 2, max = 32)
   private String name;
 
   private String familyName;

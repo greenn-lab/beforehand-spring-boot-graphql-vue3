@@ -1,10 +1,10 @@
 package beforehand.springboot.graphql.server.management.user.repository;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import beforehand.springboot.graphql.server.infrastructure.config.SecurityConfiguration;
 import beforehand.springboot.graphql.server.management.user.User;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -27,9 +27,10 @@ class UserRepositoryTest {
   UserRepository repository;
 
   @Test
-  void shouldGetUserWithAuthorities() {
+  void shouldGetUserWithUserAuthorities() {
     final Optional<User> user = repository.findById(-1L);
-    Assertions.assertThat(user.get().getFlatAuthorities().collect(Collectors.toList()).size()).isGreaterThan(1);
+
+    assertThat(user.orElseThrow(RuntimeException::new)).isNotNull();
   }
 
 }

@@ -14,12 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
-import org.mapstruct.MapperConfig;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -82,10 +78,8 @@ public class User extends EntityAuditor {
     @Email
     private String email;
 
-    @NotEmpty
     private String username;
 
-    @NotBlank
     private String password;
 
     private LocalDate passwordExpired;
