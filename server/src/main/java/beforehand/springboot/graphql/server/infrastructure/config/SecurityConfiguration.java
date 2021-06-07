@@ -49,7 +49,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
         .csrf().disable()
-        .httpBasic().disable()
+        .headers()
+        .frameOptions().sameOrigin()
+        .and()
+
         .formLogin()
         .and()
         .authorizeRequests()
