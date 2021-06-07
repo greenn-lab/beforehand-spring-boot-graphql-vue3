@@ -26,7 +26,7 @@ public class UserGraphQLService implements GraphQLQueryResolver, GraphQLMutation
     return repository.findAll(PageRequest.of(page, size < 1 ? defaultPageSize : size));
   }
 
-  @PreAuthorize("hasRole('MANAGER')")
+//  @PreAuthorize("hasRole('MANAGER')")
   public User saveUser(@Validated User.Dto dto) {
     final User user = User.Mapper.mapped.by(dto);
     return repository.save(user);

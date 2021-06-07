@@ -1,31 +1,42 @@
 package beforehand.springboot.graphql.server.management.user;
 
 import beforehand.springboot.graphql.server.infrastructure.entity.EntityAuditor;
+import beforehand.springboot.graphql.server.management.authority.Authority;
 import java.time.LocalDate;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Size;
+import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mapstruct.MapperConfig;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-@NoArgsConstructor
-public class User extends EntityAuditor implements UserDetails {
+public class User extends EntityAuditor {
+
+  private static final long serialVersionUID = -7382145646927293876L;
 
   @Id
   @GeneratedValue
   private Long id;
+
+  @Embedded
+  private UserNamed named;
 
   private String email;
   private String username;
@@ -33,37 +44,19 @@ public class User extends EntityAuditor implements UserDetails {
   private LocalDate passwordExpired;
   private boolean locked;
 
+  @OneToMany(mappedBy = "user")
+  private List<UserAuthority> userAuthorities = new ArrayList<>();
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return null;
-  }
-
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
-
-  @Override
-  public boolean isAccountNonLocked() {
-    return !locked;
-  }
-
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return passwordExpired.isAfter(LocalDate.now());
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return isAccountNonExpired() && isCredentialsNonExpired();
+  public Stream<Authority> getFlatAuthorities() {
+    return getUserAuthorities().stream()
+        .map(UserAuthority::getAuthority)
+        .flatMap(Authority::getAllAsFlat);
   }
 
   // --------------------------------------------------
   // Mapper
   // --------------------------------------------------
   @org.mapstruct.Mapper
-  @SuppressWarnings("unused")
   public interface Mapper {
 
     Mapper mapped = Mappers.getMapper(Mapper.class);
@@ -83,9 +76,21 @@ public class User extends EntityAuditor implements UserDetails {
 
     private Long id;
 
-    @Size(min = 1, max = 3)
-    private String title;
-    private LocalDate completed;
+    @Valid
+    private UserNamed named;
+
+    @Email
+    private String email;
+
+    @NotEmpty
+    private String username;
+
+    @NotBlank
+    private String password;
+
+    private LocalDate passwordExpired;
+
+    private boolean locked;
 
   }
 

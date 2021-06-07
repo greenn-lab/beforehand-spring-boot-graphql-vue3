@@ -3,7 +3,10 @@ package beforehand.springboot.graphql.server.infrastructure.config;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -44,6 +47,43 @@ public class MessageSourceConfiguration {
     }
 
     return sources.toArray(new String[0]);
+  }
+
+  @Bean
+  ExceptionMessageSource exceptionMessageSource(
+      ReloadableResourceBundleMessageSource messageSource
+  ) {
+    return new ExceptionMessageSource() {
+      public Optional<String> get(Class<? extends Throwable> clazz) {
+        final String className = clazz.getName();
+        final Locale locale = Locale.getDefault();
+
+        try {
+          final String message = messageSource.getMessage(className, null, locale);
+          if (message.equals(className)) {
+            throw new NoSuchMessageException(className);
+          }
+
+          return Optional.of(message);
+        } catch (NoSuchMessageException e) {
+          if (Object.class != clazz.getSuperclass()) {
+            @SuppressWarnings("unchecked") final Class<? extends Throwable> superclass
+                = (Class<? extends Throwable>) clazz.getSuperclass();
+
+            return get(superclass);
+          }
+        }
+
+        return Optional.empty();
+      }
+    };
+  }
+
+
+  interface ExceptionMessageSource {
+
+    Optional<String> get(Class<? extends Throwable> clazz);
+
   }
 
 }

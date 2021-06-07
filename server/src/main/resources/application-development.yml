@@ -11,7 +11,7 @@ spring:
         - "classpath:db/schema-data-h2.sql"
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
 
 logging:
   pattern:
