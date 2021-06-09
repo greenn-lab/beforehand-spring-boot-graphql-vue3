@@ -58,7 +58,7 @@ module.exports = {
   rules: {
     'prefer-promise-reject-errors': 'off',
 
-    'semi': 0,
+    'semi': ['error', 'never'],
     'quotes': ['error', 'single'],
 
     // allow debugger during development only
