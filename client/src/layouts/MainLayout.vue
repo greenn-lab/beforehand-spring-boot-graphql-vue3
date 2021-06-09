@@ -1,8 +1,8 @@
 <template>
   <q-layout view="lHh LpR lFf">
-    <main-layout-drawer/>
+    <main-layout-drawer :open="opened"/>
 
-    <main-layout-header/>
+    <main-layout-header @menuToggle="toggle"/>
 
     <q-page-container>
       <q-page class="row no-wrap">
@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import {defineComponent} from 'vue'
+import {defineComponent, ref} from 'vue'
 import MainLayoutHeader from 'layouts/MainLayoutHeader'
 import MainLayoutDrawer from 'layouts/MainLayoutDrawer'
 
@@ -29,6 +29,10 @@ defineComponent({
     MainLayoutDrawer
   }
 })
-</script>
 
-<style></style>
+const opened = ref(true)
+
+const toggle = function () {
+  opened.value = !opened.value
+}
+</script>

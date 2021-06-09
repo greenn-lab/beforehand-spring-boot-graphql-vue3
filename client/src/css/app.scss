@@ -7,7 +7,16 @@
   background: #000
 }
 
+.q-layout__section--marginal {
+  background-color: #fff;
+  color: #555;
+}
+
 .q-scrollarea {
   height: 100%;
   border-right: 1px solid #ddd;
+}
+
+.q-toolbar {
+  min-height: 60px;
 }

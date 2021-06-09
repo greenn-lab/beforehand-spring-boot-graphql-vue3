@@ -9,26 +9,50 @@ body {
   color: #777;
 }
 
-.q-list__group {
-  letter-spacing: -1px;
+.g-menu-title {
+  padding: 16px;
 
-  .text-subtitle1 {
-    color: var(--q-secondary);
+  &__name {
+    color: var(--q-accent);
+    font-size: .9rem;
     font-weight: 700;
     line-height: 1rem;
     text-transform: uppercase;
   }
+
+  &__desc {
+    color: #aaa;
+    font-size: .8rem;
+  }
 }
 
 .g-person {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  height: 200px;
+  height: 250px;
 
-  &__fn {
-    box-sizing: border-box;
-    margin: 16px;
-    width: 100%
+  &__header {
+    display: flex;
+    padding: 16px;
+  }
+
+  &__logo {
+    flex: 1 1 0;
+  }
+
+  &__main {
+    text-align: center;
+
+    .q-avatar {
+      font-size: 80px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__name {
+    color: #777;
+    font-weight: 700;
+  }
+  &__team {
+    color: #aaa;
+    font-size: .9rem;
   }
 }
