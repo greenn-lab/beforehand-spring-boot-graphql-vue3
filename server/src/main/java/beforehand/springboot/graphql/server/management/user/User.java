@@ -16,10 +16,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
+@Where(clause = "DELETED = 'N'")
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter

@@ -9,4 +9,6 @@ public interface UserRepository extends AFewRepository<User, Long> {
 
   Page<User> findAll(Pageable pageable);
 
+  <E extends User> E saveAndFlush(E entity);
+
 }

@@ -1,14 +1,13 @@
-package beforehand.springboot.graphql.server.management.user;
+package beforehand.springboot.graphql.server.management.menu;
 
 import beforehand.springboot.graphql.server.infrastructure.entity.EntityAuditor;
 import beforehand.springboot.graphql.server.management.authority.Authority;
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
@@ -19,17 +18,15 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public class UserAuthority extends EntityAuditor implements Serializable {
-
-  private static final long serialVersionUID = -6254442608026678057L;
+public class MenuAuthority extends EntityAuditor {
 
   @Id
-  @GeneratedValue
+  @Generated
   private Long id;
 
   @ManyToOne
-  @JoinColumn(name = "USER_ID")
-  private User user;
+  @JoinColumn(name = "MENU_ID")
+  private Menu menu;
 
   @ManyToOne
   @JoinColumn(name = "AUTHORITY_ID")

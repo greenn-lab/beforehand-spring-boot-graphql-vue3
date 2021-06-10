@@ -1,5 +1,6 @@
 package beforehand.springboot.graphql.server.infrastructure.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -13,6 +14,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @MappedSuperclass
 @Getter
 @Setter
+@JsonIgnoreProperties({"creator", "created", "modifier", "modified"})
 public class EntityAuditor {
 
   private boolean deleted;
