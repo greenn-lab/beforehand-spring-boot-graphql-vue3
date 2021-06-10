@@ -2,6 +2,7 @@ package beforehand.springboot.graphql.server.management.authority.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import beforehand.springboot.graphql.server.DataJpaTestConfiguration;
 import beforehand.springboot.graphql.server.infrastructure.config.SecurityConfiguration;
 import beforehand.springboot.graphql.server.management.authority.Authority;
 import java.util.List;
@@ -12,17 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Import;
 
-@DataJpaTest(
-    includeFilters = @Filter(
-        type = FilterType.ASSIGNABLE_TYPE,
-        classes = SecurityConfiguration.class
-    ),
-    properties = {
-        "spring.jpa.hibernate.ddl-auto=none",
-        "spring.jpa.properties.hibernate.format_sql=true"
-    }
-)
+@DataJpaTest
+@Import(DataJpaTestConfiguration.class)
 class AuthorityRepositoryTest {
 
   @Autowired

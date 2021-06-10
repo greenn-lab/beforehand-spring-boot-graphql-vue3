@@ -6,24 +6,7 @@ body {
 }
 
 .logged-info {
-  color: #777;
-}
-
-.g-menu-title {
-  padding: 16px;
-
-  &__name {
-    color: var(--q-accent);
-    font-size: .9rem;
-    font-weight: 700;
-    line-height: 1rem;
-    text-transform: uppercase;
-  }
-
-  &__desc {
-    color: #aaa;
-    font-size: .8rem;
-  }
+  opacity: .5;
 }
 
 .g-person {
@@ -48,11 +31,62 @@ body {
   }
 
   &__name {
-    color: #777;
+    opacity: .7;
     font-weight: 700;
   }
+
   &__team {
-    color: #aaa;
+    opacity: .5;
     font-size: .9rem;
+  }
+}
+
+.g-menu {
+  &__title {
+    padding: 16px;
+
+    &-name {
+      color: var(--q-accent);
+      font-size: .9rem;
+      font-weight: 700;
+      line-height: 1rem;
+      text-transform: uppercase;
+    }
+
+    &-desc {
+      opacity: .5;
+      font-size: .8rem;
+    }
+  }
+
+  &__child > .q-item {
+    font-size: .90rem;
+    opacity: .7;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-height: 40px;
+
+    > .q-item__section--main {
+      padding-left: 55px;
+    }
+  }
+
+  &__child > .q-item + .g-menu__child > .q-item > .q-item__section--main {
+    padding-left: 70px;
+  }
+
+  &__child > .q-item + .g-menu__child > .q-item + .g-menu__child > .q-item > .q-item__section--main {
+    padding-left: 85px;
+  }
+
+
+  &__more {
+    align-self: center;
+    height: 20px;
+    font-size: 8px;
+    padding: 0;
+    transform: rotate(0);
+    width: 20px;
+    transition: transform .4s;
   }
 }

@@ -1,15 +1,25 @@
 spring:
+
   messages:
     cache-duration: 3
+
   data:
     web:
       pageable:
         default-page-size: 5
-  sql:
-    init:
-      schema-locations:
-        - "classpath:db/schema-data-h2.sql"
+
+#    sql:
+#      init:
+#        schema-locations:
+#          - "classpath:db/schema-data-h2.sql"
+  datasource:
+    driver-class-name: "org.h2.Driver"
+    url: "jdbc:h2:./db;AUTO_SERVER=TRUE"
+    username: "sa"
+    password: "1"
+
   jpa:
+    database: h2
     hibernate:
       ddl-auto: update
 

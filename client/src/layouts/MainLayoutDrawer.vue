@@ -56,26 +56,53 @@
         </div>
         <div class="g-person__main">
           <q-avatar color="secondary">
-            <img src="~assets/person.png" alt="It's you!"/>
+            <span>A</span>
+            <!--<img src="~assets/person.png" alt="It's you!"/>-->
           </q-avatar>
           <div class="g-person__name">Anonymous Member</div>
           <div class="g-person__team">@PR Team</div>
         </div>
       </div>
 
-      <q-list padding>
-        <div class="g-menu-title">
-          <div class="g-menu-title__name">Main Works</div>
-          <div class="g-menu-title__desc">Remember an earning yours meal!</div>
+      <q-list class="g-menu" padding>
+        <div class="g-menu__title">
+          <div class="g-menu__title-name">Main Works</div>
+          <div class="g-menu__title-desc">Remember an earning yours meal!</div>
         </div>
 
         <q-item v-ripple clickable>
           <q-item-section avatar>
             <q-icon name="inbox"/>
           </q-item-section>
-
           <q-item-section>Inbox</q-item-section>
+          <q-btn class="g-menu__more" flat icon="ion-ios-arrow-forward"/>
         </q-item>
+
+        <div class="g-menu__child">
+          <q-item v-ripple clickable data-depth="1">
+            <q-item-section>unread</q-item-section>
+          </q-item>
+          <q-item v-ripple clickable data-depth="1">
+            <q-item-section>sent</q-item-section>
+          </q-item>
+          <q-item v-ripple clickable data-depth="1">
+            <q-item-section>spams</q-item-section>
+            <q-btn class="g-menu__more" flat icon="ion-ios-arrow-forward"/>
+          </q-item>
+
+          <div class="g-menu__child">
+            <q-item v-ripple clickable data-depth="1">
+              <q-item-section>unread 1</q-item-section>
+            </q-item>
+
+            <div class="g-menu__child">
+              <q-item v-ripple clickable data-depth="1">
+                <q-item-section>unread 2</q-item-section>
+              </q-item>
+            </div>
+          </div>
+        </div>
+
 
         <q-item v-ripple active clickable>
           <q-item-section avatar>
