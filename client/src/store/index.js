@@ -1,6 +1,7 @@
 import {store} from 'quasar/wrappers'
 import {createStore} from 'vuex'
 import axios from 'axios'
+import menu from 'src/gqls/menu'
 
 // import example from './module-example'
 
@@ -20,7 +21,7 @@ export default store(async function (/* { ssrContext } */) {
       menu: []
     },
     getters: {
-      getMenu(state) {
+      menu(state) {
         return state.menu
       }
     },
@@ -31,36 +32,15 @@ export default store(async function (/* { ssrContext } */) {
     },
     actions: {
       fetchMenu({commit}) {
-        axios.post('/api/graphql', {
-          query: `query {
-            menus {
-              id
-              name
-              nameEn
-              uri
-              description
-              children {
-                id
-                name
-                children {
-                  id
-                  name
-                  children {
-                    id
-                    name
-                    children {
-                      id
-                      name
-                    }
-                  }
-                }
-              }
-            }
-          }`
+        import('./menu.json')
+          .then(res => commit('setMenu', res))
+
+        /*axios.post('./menu.json', {
+          query: menu.MENUS
         })
         .then(({data}) => {
           commit('setMenu', data)
-        })
+        })*/
       }
     },
 
