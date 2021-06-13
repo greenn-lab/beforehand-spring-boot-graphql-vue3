@@ -1,5 +1,4 @@
 <template>
-
   <q-drawer
     v-model="open"
     :breakpoint="400"
@@ -7,14 +6,14 @@
     show-if-above
   >
     <q-scroll-area>
-      <g-person/>
-      <g-menu/>
+      <g-person />
+      <g-menu />
     </q-scroll-area>
   </q-drawer>
 </template>
 
 <script setup>
-import {defineComponent, defineProps} from 'vue'
+import { defineComponent, defineProps } from 'vue'
 import GPerson from './GPerson'
 import GMenu from './GMenu'
 

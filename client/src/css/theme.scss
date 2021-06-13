@@ -1,12 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap');
 
 body {
-  font-family: Roboto, 'Noto Sans KR', system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  font-family: Roboto, 'Noto Sans KR', system-ui, -apple-system,
+  Helvetica, Arial, sans-serif;
   font-size: 16px;
+  font-weight: 300;
 }
 
 .logged-info {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .g-person {
@@ -31,54 +33,71 @@ body {
   }
 
   &__name {
-    opacity: .7;
+    opacity: 0.7;
     font-weight: 700;
   }
 
   &__team {
-    opacity: .5;
-    font-size: .9rem;
+    opacity: 0.5;
+    font-size: 0.9rem;
   }
 }
 
 .g-menu {
+  color: rgba(0, 0, 0, .5);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 16px 0;
+
+  .q-item__section--avatar {
+    min-width: auto;
+  }
+
   &__title {
-    padding: 16px;
+    padding: 8px 16px;
 
     &-name {
       color: var(--q-accent);
-      font-size: .9rem;
-      font-weight: 700;
       line-height: 1rem;
       text-transform: uppercase;
     }
 
     &-desc {
-      opacity: .5;
-      font-size: .8rem;
+      opacity: 0.5;
+      font-size: 0.8rem;
     }
   }
 
-  &__child > .q-item {
-    font-size: .90rem;
-    opacity: .7;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    min-height: 35px;
+  &__child {
+    .q-item {
+      font-weight: 200;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      min-height: 35px;
 
-    > .q-item__section--main {
-      padding-left: 55px;
+      > .q-item__section--main {
+        padding-left: 40px;
+      }
     }
   }
 
-  &__child > .q-item + .g-menu__child > .q-item > .q-item__section--main {
-    padding-left: 70px;
+  &__child
+  > .q-item
+  + .g-menu__child
+  > .q-item
+  > .q-item__section--main {
+    padding-left: 60px;
   }
 
-  &__child > .q-item + .g-menu__child > .q-item + .g-menu__child > .q-item > .q-item__section--main {
-    padding-left: 85px;
+  &__child
+  > .q-item
+  + .g-menu__child
+  > .q-item
+  + .g-menu__child
+  > .q-item
+  > .q-item__section--main {
+    padding-left: 80px;
   }
-
 
   &__more {
     align-self: center;
@@ -87,6 +106,6 @@ body {
     padding: 0;
     transform: rotate(0);
     width: 20px;
-    transition: transform .4s;
+    transition: transform 0.4s;
   }
 }

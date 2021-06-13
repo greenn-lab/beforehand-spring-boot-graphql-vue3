@@ -1,5 +1,5 @@
-import {store} from 'quasar/wrappers'
-import {createStore} from 'vuex'
+import { store } from 'quasar/wrappers'
+import { createStore } from 'vuex'
 import axios from 'axios'
 import menu from 'src/gqls/menu'
 
@@ -14,33 +14,32 @@ import menu from 'src/gqls/menu'
  * with the Store instance.
  */
 
-export default store(async function (/* { ssrContext } */) {
-  const Store = createStore({
+export default store(function () {
+  return createStore({
     modules: {},
     state: {
-      menu: []
+      menus: []
     },
     getters: {
-      menu(state) {
-        return state.menu
+      menus(state) {
+        return state.menus
       }
     },
     mutations: {
-      setMenu(state, payload) {
-        state.menu = payload
+      setMenus(state, payload) {
+        console.log('payload', payload)
+        state.menus = payload.menus
       }
     },
     actions: {
-      fetchMenu({commit}) {
-        import('./menu.json')
-          .then(res => commit('setMenu', res))
-
-        /*axios.post('./menu.json', {
-          query: menu.MENUS
-        })
-        .then(({data}) => {
-          commit('setMenu', data)
-        })*/
+      async fetchMenus({ commit }) {
+        await axios
+          .post('/api/graphql', {
+            query: menu.MENUS
+          })
+          .then(({ data }) => {
+            commit('setMenus', data.data)
+          })
       }
     },
 
@@ -48,6 +47,4 @@ export default store(async function (/* { ssrContext } */) {
     // for dev mode and --debug builds only
     strict: process.env.DEBUGGING
   })
-
-  return Store
 })

@@ -1,10 +1,9 @@
 // app global css in SCSS form
 .body--light {
-
 }
 
 .body--dark {
-  background: #000
+  background: #000;
 }
 
 .q-layout__section--marginal {
@@ -15,6 +14,10 @@
 .q-scrollarea {
   height: 100%;
   border-right: 1px solid #ddd;
+}
+
+.q-drawer-container .q-scrollarea__thumb--v {
+  width: 5px;
 }
 
 .q-toolbar {

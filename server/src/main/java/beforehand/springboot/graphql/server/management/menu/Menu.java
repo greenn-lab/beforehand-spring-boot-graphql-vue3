@@ -9,7 +9,6 @@ import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.validation.constraints.NotEmpty;
@@ -34,8 +33,8 @@ public class Menu extends EntityAuditor {
   @Column(nullable = false)
   private String name;
 
-  private String nameEn;
   private String uri;
+  private Long upperId;
 
   @Column(name = "ORD")
   private int order;
@@ -49,8 +48,7 @@ public class Menu extends EntityAuditor {
   private boolean inactive;
   private boolean use;
 
-  @OneToMany(fetch = FetchType.EAGER)
-  @JoinColumn(name = "UPPER_ID")
+  @OneToMany(mappedBy = "upperId", fetch = FetchType.EAGER)
   @OrderBy("order asc")
   private List<Menu> children = new ArrayList<>();
 

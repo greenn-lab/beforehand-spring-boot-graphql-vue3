@@ -1,5 +1,5 @@
-import {route} from 'quasar/wrappers'
-import {createRouter, createWebHistory} from 'vue-router'
+import { route } from 'quasar/wrappers'
+import { createRouter, createWebHistory } from 'vue-router'
 import routes from './routes'
 
 /*
@@ -11,10 +11,9 @@ import routes from './routes'
  * with the Router instance.
  */
 
-export default route(function ({store, ssrContext}) {
-
+export default route(function ({ store, ssrContext }) {
   const Router = createRouter({
-    scrollBehavior: () => ({left: 0, top: 0}),
+    scrollBehavior: () => ({ left: 0, top: 0 }),
     routes,
 
     // Leave this as is and make changes in quasar.conf.js instead!

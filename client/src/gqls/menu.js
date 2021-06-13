@@ -4,21 +4,44 @@ query {
   menus {
     id
     name
-    nameEn
     uri
+    upperId
     description
+    icon
+    classes
+    badge
     children {
       id
       name
+      uri
+      description
+      icon
+      classes
+      badge
       children {
         id
         name
+        uri
+        description
+        icon
+        classes
+        badge
         children {
           id
           name
+          uri
+          description
+          icon
+          classes
+          badge
           children {
             id
             name
+            uri
+            description
+            icon
+            classes
+            badge
           }
         }
       }

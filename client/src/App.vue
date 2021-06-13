@@ -5,21 +5,15 @@
   <button @click="go('/about')">about</button>
 </template>
 
-
 <script setup>
-import { useRouter } from 'vue-router'
-import {onMounted} from 'vue'
+import {useRouter} from 'vue-router'
 import {useStore} from 'vuex'
 
-const $store = useStore()
+const store = useStore()
+store.dispatch('fetchMenus')
 
-onMounted(() => {
-  $store.dispatch('fetchMenu')
-})
-
-const $router = useRouter()
-
+const router = useRouter()
 const go = function (r) {
-  $router.push(r)
+  router.push(r)
 }
 </script>

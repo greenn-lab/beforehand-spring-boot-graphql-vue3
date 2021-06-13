@@ -1,16 +1,21 @@
 extend type Query {
-    # 페이지별로 user 항목을 가져와요.
-    # fetch user items by pagination
+    # 메뉴 항목을 가져와요.
+    # fetch menu items
     menus: [Menu]
 }
 
-# user 항목의 구조
-# structure of user item
+# 메뉴 항목의 구조
+# structure of menu item
 type Menu {
     id: ID!
     name: String
-    nameEn: String
     uri: String
+    upperId: Int
     description: String
+    icon: String
+    badge: String
+    classes: String
+    inactive: Boolean
+    use: Boolean
     children: [Menu]
 }
