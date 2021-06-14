@@ -1,30 +1,42 @@
 <template>
-  <div class="g-task-queue col q-pl-xl">
-    <q-tabs v-model="tab" align="right" inline-label>
-      <q-tab
-        v-for="task in tasks"
-        :key="task.id"
-        :label="task.name"
-        name="task.id"
-      />
-      <q-tab label="Mails" name="mails" />
-      <q-tab label="Alarms" name="alarms" />
-      <q-tab label="Movies" name="movies" />
-      <q-tab label="Photos" name="photos" />
-      <q-tab label="Videos" name="videos" />
-      <q-tab label="Address Book" name="addressbook" />
-    </q-tabs>
-  </div>
+  <q-tabs
+    v-model="tab"
+    class="g-task-queue"
+    inline-label
+    shrink
+    stretch
+  >
+    <q-tab
+      v-for="tab in tasks"
+      :key="tab.name"
+      v-bind="tab"
+    />
+  </q-tabs>
 </template>
 
 <script setup>
+import { computed, ref, watch } from 'vue'
 import { useStore } from 'vuex'
-import { computed } from 'vue'
 
 const store = useStore()
-
-// computed
-const tasks = computed(
+const storedTasks = computed(
   () => store.getters['navigation/tasks']
 )
+
+const tasks = ref(
+  storedTasks.value.map(i => ({
+    name: i.id,
+    label: i.name
+  }))
+)
+const tab = ref('-2')
+
+watch(storedTasks, next => {
+  tasks.value = next.map(i => ({
+    name: i.id,
+    label: i.name
+  }))
+
+  tab.value = tasks.value[0].name
+})
 </script>

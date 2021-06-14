@@ -26,21 +26,19 @@ export default {
   mutations: {
     setActiveMenu(state, payload) {
       state.activeMenu = payload
-
-      console.table(state)
     },
     setMenus(state, payload) {
       state.menus = payload.menus
     },
     addTask(state, task) {
-      state.tasks.push(task)
-      this.setActiveTask(task)
+      state.tasks = [task, ...state.tasks]
     },
     removeTask(state, task) {
       state.tasks = state.tasks.filter(
         t => t.id !== task.id
       )
-      this.setActiveTask(state.tasks[0])
+
+      state.activeTask = task.id
     },
     setActiveTask(state, task) {
       state.activeTask = task.id

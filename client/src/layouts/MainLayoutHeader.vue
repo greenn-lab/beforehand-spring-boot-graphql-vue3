@@ -1,16 +1,14 @@
 <template>
   <q-header>
-    <q-toolbar>
-      <div class="col col-shrink">
-        <q-btn
-          class="q-ml-md"
-          dense
-          flat
-          icon="menu"
-          round
-          @click="$emit('menuToggle')"
-        />
-      </div>
+    <q-toolbar class="q-gutter-none">
+      <q-btn
+        dense
+        flat
+        icon="menu"
+        round
+        @click="$emit('menuToggle')"
+      />
+      <q-space />
       <g-task-queue />
 
       <!--

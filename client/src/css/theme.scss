@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap');
 
 body {
   font-family: Roboto, 'Noto Sans KR', system-ui, -apple-system,
   Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .logged-info {
@@ -47,7 +47,7 @@ body {
 .g-menu {
   color: rgba(0, 0, 0, .5);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 16px 0;
 
   .q-item {
@@ -116,24 +116,28 @@ body {
 
 
 .g-task-queue {
-  position: relative;
-  right: -12px;
-  top: 2px;
+  top: 1px;
 
-  .q-tabs__arrow--left,
-  .q-tabs__arrow--right {
-    background-color: #fff;
-    top: -2px;
+  .q-tabs__arrow {
+    height: 48px;
+
+    &--left {
+      background-image: linear-gradient(to right, rgba(#fff, 1) 20%, rgba(#fff, 0) 100%);
+    }
+
+    &--right {
+      background-image: linear-gradient(to left, rgba(#fff, 1) 20%, rgba(#fff, 0) 100%);
+    }
   }
 
-  .q-tab__content {
-    min-width: auto !important;
+  .q-tab {
+    text-transform: none;
   }
 
-  .q-tab__label {
-    max-width: 120px;
+  /*.q-tab__label {
+    max-widt
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-  }
+  }*/
 }
