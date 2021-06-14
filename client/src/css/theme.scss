@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap');
 
 body {
   font-family: Roboto, 'Noto Sans KR', system-ui, -apple-system,
   Helvetica, Arial, sans-serif;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
+  overflow:hidden;
 }
 
 .logged-info {
@@ -13,6 +14,7 @@ body {
 
 .g-person {
   height: 250px;
+  font-size: 0.9rem;
 
   &__header {
     display: flex;
@@ -39,22 +41,29 @@ body {
 
   &__team {
     opacity: 0.5;
-    font-size: 0.9rem;
   }
 }
 
 .g-menu {
   color: rgba(0, 0, 0, .5);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   padding: 16px 0;
+
+  .q-item {
+    padding: 8px 24px;
+  }
+
+  .q-item--active {
+    background-color: rgba($dark, .05)
+  }
 
   .q-item__section--avatar {
     min-width: auto;
   }
 
   &__title {
-    padding: 8px 16px;
+    padding: 8px 24px;
 
     &-name {
       color: var(--q-accent);
@@ -69,34 +78,29 @@ body {
   }
 
   &__child {
+    font-weight: 400;
+
     .q-item {
-      font-weight: 200;
       padding-top: 4px;
       padding-bottom: 4px;
       min-height: 35px;
 
-      > .q-item__section--main {
-        padding-left: 40px;
+      &[depth] {
+        padding-left: 110px;
+      }
+
+      &[depth="2"] {
+        padding-left: 65px;
+      }
+
+      &[depth="3"] {
+        padding-left: 80px;
+      }
+
+      &[depth="4"] {
+        padding-left: 95px;
       }
     }
-  }
-
-  &__child
-  > .q-item
-  + .g-menu__child
-  > .q-item
-  > .q-item__section--main {
-    padding-left: 60px;
-  }
-
-  &__child
-  > .q-item
-  + .g-menu__child
-  > .q-item
-  + .g-menu__child
-  > .q-item
-  > .q-item__section--main {
-    padding-left: 80px;
   }
 
   &__more {
@@ -107,5 +111,29 @@ body {
     transform: rotate(0);
     width: 20px;
     transition: transform 0.4s;
+  }
+}
+
+
+.g-task-queue {
+  position: relative;
+  right: -12px;
+  top: 2px;
+
+  .q-tabs__arrow--left,
+  .q-tabs__arrow--right {
+    background-color: #fff;
+    top: -2px;
+  }
+
+  .q-tab__content {
+    min-width: auto !important;
+  }
+
+  .q-tab__label {
+    max-width: 120px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }

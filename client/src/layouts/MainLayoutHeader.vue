@@ -1,7 +1,7 @@
 <template>
   <q-header>
     <q-toolbar>
-      <div class="col">
+      <div class="col col-shrink">
         <q-btn
           class="q-ml-md"
           dense
@@ -11,6 +11,9 @@
           @click="$emit('menuToggle')"
         />
       </div>
+      <g-task-queue />
+
+      <!--
       <div class="col-shrink text-right">
         <q-btn
           dense
@@ -42,16 +45,14 @@
           >
         </q-btn>
       </div>
+-->
     </q-toolbar>
   </q-header>
 </template>
 
-<script setup></script>
+<script setup>
+import { defineComponent } from 'vue'
+import GTaskQueue from '../components/navigation/GTaskQueue'
 
-<style lang="scss" scoped>
-.col-shrink {
-  .q-btn {
-    margin-right: 16px;
-  }
-}
-</style>
+defineComponent([GTaskQueue])
+</script>

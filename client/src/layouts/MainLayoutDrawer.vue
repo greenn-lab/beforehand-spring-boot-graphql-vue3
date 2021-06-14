@@ -1,7 +1,7 @@
 <template>
   <q-drawer
     v-model="open"
-    :breakpoint="400"
+    :breakpoint="680"
     :width="280"
     show-if-above
   >
@@ -14,8 +14,8 @@
 
 <script setup>
 import { defineComponent, defineProps } from 'vue'
-import GPerson from './GPerson'
-import GMenu from './GMenu'
+import GPerson from 'components/navigation/GPerson'
+import GMenu from 'components/navigation/GMenu'
 
 defineComponent([GPerson, GMenu])
 
