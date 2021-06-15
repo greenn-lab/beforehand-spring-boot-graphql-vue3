@@ -4,7 +4,7 @@ import menu from 'src/gqls/menu'
 export default {
   namespaced: true,
   state: {
-    active: 0,
+    active: {},
     menus: [],
     tasks: []
   },
@@ -20,26 +20,33 @@ export default {
     }
   },
   mutations: {
-    setActive(state, id) {
-      state.active = id
+    setActive(state, payload) {
+      state.active = payload
     },
     setMenus(state, payload) {
-      state.menus = payload.menus
-    },
-    addTask(state, task) {
-      if (state.tasks.some(i => task.id === i.id)) {
-        return
+      const calculatePath = (menus, upper) => {
+        return menus.map(i => {
+          i.path = (upper ? upper.path : []).concat(i.name)
+          i.branches.length && calculatePath(i.branches, i)
+          return i
+        })
       }
 
-      state.tasks = [task, ...state.tasks]
+      state.menus = calculatePath(payload.menus)
+    },
+    addTask(state, payload) {
+      if (state.tasks.every(i => payload.id !== i.id)) {
+        state.tasks = [payload, ...state.tasks]
+      }
     },
     removeLastTask(state, task) {
       state.tasks = state.tasks.splice(1)
     }
   },
   actions: {
-    setActive({ commit }, id) {
-      commit('setActive', id)
+    setActive({ commit }, payload) {
+      commit('setActive', payload)
+      commit('addTask', payload)
     },
     async fetchMenus({ commit }) {
       await axios

@@ -64,7 +64,9 @@ module.exports = configure(function (ctx) {
       chainWebpack(chain) {
         chain
           .plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js', 'vue'] }])
+          .use(ESLintPlugin, [
+            { extensions: ['js', 'vue'] }
+          ])
       }
     },
 

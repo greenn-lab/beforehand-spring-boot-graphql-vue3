@@ -1,6 +1,6 @@
 <template>
   <q-tabs
-    v-model="active"
+    v-model="tab"
     class="g-task-queue"
     inline-label
     shrink
@@ -18,17 +18,30 @@
 </template>
 
 <script setup>
-import { computed, inject } from 'vue'
+import { computed, inject, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
 const routing = inject('routing')
 
+// computed
 const tasks = computed(
   () => store.getters['navigation/tasks']
 )
-const active = computed({
-  get: () => store.getters['navigation/active'],
-  set: tab => store.dispatch('navigation/setActive', tab)
+const active = computed(
+  () => store.getters['navigation/active']
+)
+
+// ref
+const tab = ref(active.value.id)
+
+// watch
+watch(tab, next => {
+  store.dispatch(
+    'navigation/setActive',
+    tasks.value.find(task => task.id === tab.value)
+  )
 })
+
+watch(active, next => (tab.value = next.id))
 </script>

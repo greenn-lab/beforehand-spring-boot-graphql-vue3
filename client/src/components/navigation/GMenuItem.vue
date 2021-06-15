@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { computed, defineProps, ref, inject } from 'vue'
+import { computed, defineProps, inject, ref } from 'vue'
 import { useStore } from 'vuex'
 
 const { menu, depth } = defineProps(['menu', 'depth'])
@@ -58,8 +58,7 @@ const select = () => {
   isSpreadBranches.value = !isSpreadBranches.value
 
   if (!hasChild.value) {
-    store.dispatch('navigation/setActive', menu.id)
-    store.dispatch('navigation/addTask', menu)
+    store.dispatch('navigation/setActive', menu)
   }
 
   routing(menu)
