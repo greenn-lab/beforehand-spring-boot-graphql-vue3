@@ -132,6 +132,14 @@ body {
 
   .q-tab {
     text-transform: none;
+
+    &__icon:empty {
+      display: none;
+
+      & + .q-tab__label {
+        padding-left: 0;
+      }
+    }
   }
 
   /*.q-tab__label {

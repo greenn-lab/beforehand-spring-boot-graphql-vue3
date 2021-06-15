@@ -19,7 +19,7 @@ class MenuRepositoryTest {
   MenuRepository repository;
 
   @Test
-  void shouldGetMenuAllChildren() {
+  void shouldGetMenuAllBranches() {
     final Optional<Menu> adminMenus = repository.findById(0L);
 
     assertThat(adminMenus).isPresent();

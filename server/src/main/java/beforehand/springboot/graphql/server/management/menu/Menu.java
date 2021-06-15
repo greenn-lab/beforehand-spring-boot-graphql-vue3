@@ -50,7 +50,7 @@ public class Menu extends EntityAuditor {
 
   @OneToMany(mappedBy = "upperId", fetch = FetchType.EAGER)
   @OrderBy("order asc")
-  private List<Menu> children = new ArrayList<>();
+  private List<Menu> branches = new ArrayList<>();
 
 
   // -------------------------------------------------------

@@ -10,7 +10,7 @@ query {
     icon
     classes
     badge
-    children {
+    branches {
       id
       name
       uri
@@ -18,7 +18,7 @@ query {
       icon
       classes
       badge
-      children {
+      branches {
         id
         name
         uri
@@ -26,7 +26,7 @@ query {
         icon
         classes
         badge
-        children {
+        branches {
           id
           name
           uri
@@ -34,7 +34,7 @@ query {
           icon
           classes
           badge
-          children {
+          branches {
             id
             name
             uri
@@ -42,6 +42,15 @@ query {
             icon
             classes
             badge
+            branches {
+              id
+              name
+              uri
+              description
+              icon
+              classes
+              badge
+            }
           }
         }
       }

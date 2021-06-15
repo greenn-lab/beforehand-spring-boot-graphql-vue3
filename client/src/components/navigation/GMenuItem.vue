@@ -3,8 +3,8 @@
     <q-item
       v-ripple
       :active="menu.id === active"
-      clickable
       :depth="depth"
+      clickable
       @click="select"
     >
       <q-item-section v-if="depth === 1" avatar>
@@ -20,9 +20,9 @@
     </q-item>
 
     <q-slide-transition>
-      <div v-show="open" class="g-menu__child">
+      <div v-show="isSpreadBranches" class="g-menu__child">
         <div
-          v-for="childMenu in menu.children"
+          v-for="childMenu in menu.branches"
           :key="childMenu.id"
           class="g-menu__item"
         >
@@ -37,28 +37,31 @@
 </template>
 
 <script setup>
-import { computed, defineProps, ref } from 'vue'
+import { computed, defineProps, ref, inject } from 'vue'
 import { useStore } from 'vuex'
 
 const { menu, depth } = defineProps(['menu', 'depth'])
 const store = useStore()
+const routing = inject('routing')
 
 // ref
-const open = ref(false)
+const isSpreadBranches = ref(false)
 
 // computed
-const hasChild = computed(() => !!menu.children?.length)
+const hasChild = computed(() => !!menu.branches?.length)
 const active = computed(
-  () => store.getters['navigation/activeMenu']
+  () => store.getters['navigation/active']
 )
 
 // methods
 const select = () => {
-  open.value = !open.value
+  isSpreadBranches.value = !isSpreadBranches.value
 
   if (!hasChild.value) {
-    store.dispatch('navigation/setActiveMenu', menu.id)
+    store.dispatch('navigation/setActive', menu.id)
     store.dispatch('navigation/addTask', menu)
   }
+
+  routing(menu)
 }
 </script>

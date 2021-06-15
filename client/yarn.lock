@@ -1012,7 +1012,7 @@
   resolved "https://registry.yarnpkg.com/@positron/stack-trace/-/stack-trace-1.0.0.tgz#14fcc712a530038ef9be1ce6952315a839f466a8"
   integrity sha1-FPzHEqUwA475vhzmlSMVqDn0Zqg=
 
-"@quasar/app@^3.0.0-beta.1":
+"@quasar/app@^3.0.0-rc.2":
   version "3.0.0-rc.2"
   resolved "https://registry.yarnpkg.com/@quasar/app/-/app-3.0.0-rc.2.tgz#710724ff5e4d52520caf2545c3f68d8227168442"
   integrity sha512-CaBL/H/jXmlaGFhZyl2S7cQzXFseVApcKCC4UyQOBaUp9WE0jNG9oVG8yEuHeKxy0gRnw2Vq70Gt1AKaSLtrKw==
@@ -1116,7 +1116,7 @@
     core-js "^3.6.5"
     core-js-compat "^3.6.5"
 
-"@quasar/extras@^1.0.0":
+"@quasar/extras@^1.10.7":
   version "1.10.7"
   resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.10.7.tgz#ecd09cd3b1251dea260c54dcc5a965dcc1abc1e2"
   integrity sha512-DjKDggvvVy6qAOoCIfx4Zj+yt9nmgMA32jmk1W15V6yz9TlE6G5hJ/wkT6fddkLGBkfikY7PazeKX4s+oFSiDw==
@@ -5462,7 +5462,7 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-quasar@^2.0.0-beta.1:
+quasar@^2.0.0-rc.2:
   version "2.0.0-rc.2"
   resolved "https://registry.yarnpkg.com/quasar/-/quasar-2.0.0-rc.2.tgz#df7695526ce4a556abcbe1cc7abe66ec56af1ef3"
   integrity sha512-eicMlpSSYzPn4p0FriZgFIqpFEAmiQ2PUWSx5W1pyUqlSToBV/3ZxJXM2j/CwCVey0rr17/OBBYuAYY4ej/+Bg==

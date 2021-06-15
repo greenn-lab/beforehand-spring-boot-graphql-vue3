@@ -17,7 +17,7 @@ public class MenuGraphQLService implements GraphQLQueryResolver {
 
   public List<Menu> menus() {
     final Optional<Menu> root = repository.findById(0L);
-    return root.orElseGet(Menu::new).getChildren();
+    return root.orElseGet(Menu::new).getBranches();
   }
 
 }

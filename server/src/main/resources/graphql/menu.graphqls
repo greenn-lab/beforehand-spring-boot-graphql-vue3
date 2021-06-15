@@ -17,5 +17,5 @@ type Menu {
     classes: String
     inactive: Boolean
     use: Boolean
-    children: [Menu]
+    branches: [Menu]
 }

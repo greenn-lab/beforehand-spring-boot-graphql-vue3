@@ -4,49 +4,39 @@ import menu from 'src/gqls/menu'
 export default {
   namespaced: true,
   state: {
-    activeMenu: 0,
+    active: 0,
     menus: [],
-    activeTask: '',
     tasks: []
   },
   getters: {
-    activeMenu(state) {
-      return state.activeMenu
+    active(state) {
+      return state.active
     },
     menus(state) {
       return state.menus
-    },
-    activeTask(state) {
-      return state.activeTask
     },
     tasks(state) {
       return state.tasks
     }
   },
   mutations: {
-    setActiveMenu(state, payload) {
-      state.activeMenu = payload
+    setActive(state, id) {
+      state.active = id
     },
     setMenus(state, payload) {
       state.menus = payload.menus
     },
     addTask(state, task) {
-      state.tasks = [task, ...state.tasks]
-    },
-    removeTask(state, task) {
-      state.tasks = state.tasks.filter(
-        t => t.id !== task.id
-      )
+      if (state.tasks.some(i => task.id === i.id)) {
+        return
+      }
 
-      state.activeTask = task.id
-    },
-    setActiveTask(state, task) {
-      state.activeTask = task.id
+      state.tasks = [task, ...state.tasks]
     }
   },
   actions: {
-    setActiveMenu({ commit }, id) {
-      commit('setActiveMenu', id)
+    setActive({ commit }, id) {
+      commit('setActive', id)
     },
     async fetchMenus({ commit }) {
       await axios

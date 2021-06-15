@@ -1,26 +1,46 @@
-import { route } from 'quasar/wrappers'
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory,
+  useRouter
+} from 'vue-router'
 import routes from './routes'
 
-/*
- * If not building with SSR mode, you can
- * directly export the Router instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Router instance.
- */
+const _addRoutes = (_routes, menus) => {
+  menus.forEach(menu => {
+    _routes.push({
+      path: menu.uri,
+      name: menu.uri.toLowerCase().replace(/\//g, '-'),
+      component: () =>
+        import(`../pages${menu.uri}.vue`).catch(() =>
+          import('../pages/Error404.vue')
+        )
+    })
 
-export default route(function ({ store, ssrContext }) {
-  const Router = createRouter({
-    scrollBehavior: () => ({ left: 0, top: 0 }),
-    routes,
+    menu.branches &&
+      menu.branches.length &&
+      _addRoutes(_routes, menu.branches)
+  })
+}
 
-    // Leave this as is and make changes in quasar.conf.js instead!
-    // quasar.conf.js -> build -> vueRouterMode
-    // quasar.conf.js -> build -> publicPath
-    history: createWebHistory()
+export const routing = function (router, menu) {
+  router.push({
+    path: menu.uri
   })
 
-  return Router
-})
+  document.title = menu.name
+}
+
+export default async ({ store }) => {
+  await store.dispatch('navigation/fetchMenus')
+
+  _addRoutes(
+    routes[0].children,
+    store.getters['navigation/menus']
+  )
+
+  return createRouter({
+    scrollBehavior: () => ({ left: 0, top: 0 }),
+    routes,
+    history: createWebHistory()
+  })
+}
