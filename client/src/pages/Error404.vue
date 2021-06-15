@@ -28,10 +28,10 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script setup>
+import { useStore } from 'vuex'
 
-export default defineComponent({
-  name: 'Error404'
-})
+const store = useStore()
+
+store.dispatch('navigation/removeLastTask')
 </script>

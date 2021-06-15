@@ -32,6 +32,9 @@ export default {
       }
 
       state.tasks = [task, ...state.tasks]
+    },
+    removeLastTask(state, task) {
+      state.tasks = state.tasks.splice(1)
     }
   },
   actions: {
@@ -49,6 +52,9 @@ export default {
     },
     addTask({ commit }, task) {
       commit('addTask', task)
+    },
+    removeLastTask({ commit }, task) {
+      commit('removeLastTask', task)
     }
   }
 }
