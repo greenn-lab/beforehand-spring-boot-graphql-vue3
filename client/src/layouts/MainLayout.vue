@@ -11,11 +11,12 @@
               class="col q-pr-sm full-height"
               visible
             >
-              <router-view v-slot="{ Component }">
+              <router-view />
+              <!--<router-view v-slot="{ Component }">
                 <keep-alive>
                   <component :is="Component" />
                 </keep-alive>
-              </router-view>
+              </router-view>-->
             </q-scroll-area>
           </div>
         </div>

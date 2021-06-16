@@ -149,3 +149,21 @@ body {
     white-space: nowrap;
   }*/
 }
+
+
+.g-page {
+  background-color: rgba($dark, 0.05);
+  border-top: 1px solid rgba($dark, 0.1);
+
+  > div {
+    padding: 24px;
+  }
+
+  &__name {
+
+  }
+
+  &__path {
+
+  }
+}

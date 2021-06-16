@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <main>
     <PageHeader />
-    <main id="stage"></main>
-  </div>
+    <section class="g-page">
+      <slot />
+    </section>
+  </main>
 </template>
 
 <script setup>

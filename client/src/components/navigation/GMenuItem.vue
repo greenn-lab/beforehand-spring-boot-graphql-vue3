@@ -50,7 +50,7 @@ const isSpreadBranches = ref(false)
 // computed
 const hasChild = computed(() => !!menu.branches?.length)
 const active = computed(
-  () => store.getters['navigation/active']
+  () => store.getters['navigation/active'].id
 )
 
 // methods

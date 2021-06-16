@@ -6,6 +6,7 @@ target/
 .idea
 *.iws
 *.iml
-*.
 
 node_modules/
+package-lock.json
+yarn.lock
