@@ -1,19 +1,6 @@
 <template>
-  <PageDefault>
-    <div>
-      test
-      <b
-        >ipsum lorem
-        {{ [1, 2, 3, 4, 5, 6, 7, 8].join(' - ') }}</b
-      >
-    </div>
-  </PageDefault>
+  <main class="g-page">
+    test
+    <b>ipsum lorem {{ [1, 2, 3, 4, 5].join(' - ') }}</b>
+  </main>
 </template>
-<script setup>
-import { defineComponent } from 'vue'
-import PageDefault from 'components/page/PageDefault'
-
-defineComponent({
-  components: { PageDefault }
-})
-</script>

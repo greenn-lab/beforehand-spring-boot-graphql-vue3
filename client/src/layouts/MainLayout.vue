@@ -11,6 +11,7 @@
               class="col q-pr-sm full-height"
               visible
             >
+              <main-layout-page-header />
               <router-view />
               <!--<router-view v-slot="{ Component }">
                 <keep-alive>
@@ -29,13 +30,15 @@
 import { defineComponent, provide, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-import MainLayoutHeader from 'layouts/MainLayoutHeader'
-import MainLayoutDrawer from 'layouts/MainLayoutDrawer'
+import MainLayoutHeader from './MainLayoutHeader'
+import MainLayoutDrawer from './MainLayoutDrawer'
+import MainLayoutPageHeader from './MainLayoutPageHeader'
 
 defineComponent({
   components: {
     MainLayoutHeader,
-    MainLayoutDrawer
+    MainLayoutDrawer,
+    MainLayoutPageHeader
   }
 })
 
