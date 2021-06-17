@@ -4,15 +4,23 @@
       <div class="g-person__logo">
         <q-icon name="science" size="md" />
       </div>
-      <q-btn flat icon="ion-ios-notifications-outline" round>
-        <q-badge color="negative" floating rounded>3</q-badge>
+      <q-btn
+        flat
+        icon="ion-ios-notifications-outline"
+        round
+      >
+        <q-badge color="negative" floating rounded
+          >3</q-badge
+        >
       </q-btn>
       <q-btn flat icon="ion-ios-contact" round>
         <q-menu anchor="bottom right" self="top right">
           <q-list style="width: 248px">
             <q-item>
-              <q-item-section class="logged-info">
-                <span class="text-caption">Logged in as</span>
+              <q-item-section class="g-person__logged">
+                <span class="text-caption"
+                  >Logged in as</span
+                >
                 <span class="text-subtitle2"
                   >greensrum@gmail.com</span
                 >

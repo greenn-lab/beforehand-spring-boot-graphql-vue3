@@ -1,0 +1,48 @@
+.q-date {
+  &__header {
+    display: none;
+  }
+
+  &__view {
+    padding: 0;
+  }
+
+  &__navigation {
+    padding: 20px 16px 8px;
+
+    .q-btn {
+      color: rgba(#000, .5);
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+
+  &__arrow {
+    order: 9;
+    width: 40px;
+
+    .q-icon {
+      color: rgba(#000, .5);
+      font-size: 1.5rem;
+    }
+
+    &:nth-child(1) {
+      flex: 1 1 0;
+      margin-right: 10px;
+    }
+    &:nth-child(4),
+    &:nth-child(6) {
+       display: none;
+    }
+  }
+
+  &__calendar-weekdays {
+    border-bottom: 1px solid #ddd;
+    padding: 0 16px;
+  }
+
+  &__calendar-days {
+    padding: 16px;
+  }
+}

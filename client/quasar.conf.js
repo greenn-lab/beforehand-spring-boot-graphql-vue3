@@ -24,7 +24,13 @@ module.exports = configure(function (ctx) {
     boot: ['axios'],
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
-    css: ['app.scss', 'theme.scss'],
+    css: [
+      'app.scss',
+      'g-person.scss',
+      'g-page.scss',
+      'g-task.scss',
+      'g-date.scss'
+    ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -77,7 +83,7 @@ module.exports = configure(function (ctx) {
       open: false, // opens browser window automatically
       proxy: {
         '/api': {
-          target: 'http://localhost:8080',
+          target: 'http://localhost:8001',
           changeOrigin: true,
           pathRewrite: {
             '^/api': ''

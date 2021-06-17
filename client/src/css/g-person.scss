@@ -1,0 +1,105 @@
+.g-person {
+  height: 250px;
+  font-size: 0.9rem;
+
+  &__header {
+    display: flex;
+    padding: 16px;
+  }
+
+  &__logo {
+    flex: 1 1 0;
+  }
+
+  &__logged {
+    opacity: 0.5;
+  }
+
+  &__main {
+    text-align: center;
+
+    .q-avatar {
+      font-size: 80px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__name {
+    opacity: 0.7;
+    font-weight: 700;
+  }
+
+  &__team {
+    opacity: 0.5;
+  }
+}
+
+.g-menu {
+  color: rgba(0, 0, 0, .5);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 16px 0;
+
+  .q-item {
+    padding: 8px 24px;
+  }
+
+  .q-item--active {
+    background-color: rgba($dark, .05)
+  }
+
+  .q-item__section--avatar {
+    min-width: auto;
+  }
+
+  &__title {
+    padding: 8px 24px;
+
+    &-name {
+      color: var(--q-accent);
+      line-height: 1rem;
+      text-transform: uppercase;
+    }
+
+    &-desc {
+      opacity: 0.5;
+      font-size: 0.8rem;
+    }
+  }
+
+  &__child {
+    font-weight: 400;
+
+    .q-item {
+      padding-top: 4px;
+      padding-bottom: 4px;
+      min-height: 35px;
+
+      &[depth] {
+        padding-left: 110px;
+      }
+
+      &[depth="2"] {
+        padding-left: 65px;
+      }
+
+      &[depth="3"] {
+        padding-left: 80px;
+      }
+
+      &[depth="4"] {
+        padding-left: 95px;
+      }
+    }
+  }
+
+  &__more {
+    align-self: center;
+    height: 20px;
+    font-size: 8px;
+    padding: 0;
+    transform: rotate(0);
+    width: 20px;
+    transition: transform 0.4s;
+  }
+}

@@ -1,0 +1,34 @@
+.g-task {
+  top: 1px;
+
+  .q-tabs__arrow {
+    height: 48px;
+
+    &--left {
+      background-image: linear-gradient(to right, rgba(#fff, 1) 20%, rgba(#fff, 0) 100%);
+    }
+
+    &--right {
+      background-image: linear-gradient(to left, rgba(#fff, 1) 20%, rgba(#fff, 0) 100%);
+    }
+  }
+
+  .q-tab {
+    text-transform: none;
+
+    &__icon:empty {
+      display: none;
+
+      & + .q-tab__label {
+        padding-left: 0;
+      }
+    }
+  }
+
+  /*.q-tab__label {
+    max-widt
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }*/
+}

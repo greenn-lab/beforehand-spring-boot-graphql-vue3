@@ -1,7 +1,7 @@
 <template>
   <q-drawer
     v-model="open"
-    :breakpoint="680"
+    :breakpoint="800"
     :width="280"
     show-if-above
   >

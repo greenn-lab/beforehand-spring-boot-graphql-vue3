@@ -1,0 +1,57 @@
+.g-page {
+  background-color: rgba($dark, 0.05);
+  border-top: 1px solid rgba($dark, 0.1);
+  min-height: calc(100vh - 170px);
+  padding: 24px;
+
+  &__header {
+    height: 70px;
+    margin: 25px 24px;
+  }
+
+  &__name {
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 2rem;
+    margin: 0.3rem 0;
+  }
+
+  &__path {
+    font-size: 0.8rem;
+
+    > .q-icon {
+      font-size: 1.5rem;
+      margin: 0 5px;
+      top: -2px;
+    }
+  }
+}
+
+@include -mobile {
+  .g-page {
+    min-height: calc(100vh - 130px);
+    padding: 16px;
+
+    &__header {
+      height: 50px;
+      margin: 15px 16px;
+    }
+
+    &__name {
+      font-size: 1.5rem;
+      font-weight: 900;
+      line-height: 1rem;
+      margin: 0.3rem 0;
+    }
+
+    &__path {
+      font-size: 0.7rem;
+
+      > .q-icon {
+        font-size: 1rem;
+        margin: 0;
+        top: -1px;
+      }
+    }
+  }
+}

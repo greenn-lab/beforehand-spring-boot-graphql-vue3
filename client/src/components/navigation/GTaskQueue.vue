@@ -1,7 +1,7 @@
 <template>
   <q-tabs
     v-model="tab"
-    class="g-task-queue"
+    class="g-task"
     inline-label
     shrink
     stretch
