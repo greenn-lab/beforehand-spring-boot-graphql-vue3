@@ -10,34 +10,38 @@
       <q-input
         filled
         v-model="date"
+        icon
         mask="date"
         :rules="['date']"
+        @focus="$refs.cal.show()"
       >
-        <template v-slot:append>
-          <q-icon name="event" class="cursor-pointer">
-            <q-popup-proxy
-              ref="qDateProxy"
-              transition-show="scale"
-              transition-hide="scale"
+        <template v-slot:prepend>
+          <q-popup-proxy
+            transition-show="scale"
+            transition-hide="scale"
+            ref="cal"
+          >
+            <q-date
+              model-value="123"
+              @update:model-value="31"
+              v-model="date"
             >
-              <q-date v-model="date">
-                <div class="row items-center">
-                  <q-btn
-                    v-close-popup
-                    label="Close"
-                    color="primary"
-                    flat
-                  />
-                  <q-btn
-                    v-close-popup
-                    label="Close"
-                    color="primary"
-                    flat
-                  />
-                </div>
-              </q-date>
-            </q-popup-proxy>
-          </q-icon>
+              <div class="row items-center">
+                <q-btn
+                  v-close-popup
+                  label="Close"
+                  color="primary"
+                  flat
+                />
+                <q-btn
+                  v-close-popup
+                  label="Close"
+                  color="primary"
+                  flat
+                />
+              </div>
+            </q-date>
+          </q-popup-proxy>
         </template>
       </q-input>
 
