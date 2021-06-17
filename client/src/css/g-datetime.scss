@@ -1,4 +1,6 @@
 .q-date {
+  color: rgba(#000, .7);
+
   &__header {
     display: none;
   }
@@ -11,10 +13,13 @@
     padding: 20px 16px 8px;
 
     .q-btn {
-      color: rgba(#000, .5);
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 500;
       text-transform: uppercase;
+    }
+
+    .flex:nth-child(2) {
+      flex: none;
     }
   }
 
@@ -42,7 +47,39 @@
     padding: 0 16px;
   }
 
-  &__calendar-days {
+  &__calendar-days-container {
     padding: 16px;
+  }
+
+  &__calendar-item {
+    margin: 4px 0;
+  }
+
+  &__today {
+    box-shadow: 0 0 1px 1px currentColor;
+  }
+}
+
+.q-time {
+  color: rgba(#000, .7);
+  min-width: 240px;
+  width: 240px;
+
+  &__header {
+    color: inherit;
+    background-color: #fff;
+  }
+
+  &__link {
+    opacity: .5;
+    font-weight: 500;
+  }
+
+  &__container-child {
+    background-color: rgba(#000, .05)
+  }
+
+  &__clock-position {
+    font-size: .9rem;
   }
 }

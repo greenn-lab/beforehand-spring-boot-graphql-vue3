@@ -29,7 +29,7 @@ module.exports = configure(function (ctx) {
       'g-person.scss',
       'g-page.scss',
       'g-task.scss',
-      'g-date.scss'
+      'g-datetime.scss'
     ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
