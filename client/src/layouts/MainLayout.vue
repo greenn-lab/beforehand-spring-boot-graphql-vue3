@@ -6,20 +6,14 @@
     <q-page-container>
       <q-page class="row no-wrap">
         <div class="col">
-          <div class="full-height">
-            <q-scroll-area
-              class="col q-pr-sm full-height"
-              visible
-            >
-              <main-layout-page-header />
-              <router-view />
-              <!--<router-view v-slot="{ Component }">
-                <keep-alive>
-                  <component :is="Component" />
-                </keep-alive>
-              </router-view>-->
-            </q-scroll-area>
-          </div>
+          <router-view />
+          <!-- Remain content from changed route.
+          <router-view v-slot="{ Component }">
+            <keep-alive>
+              <component :is="Component" />
+            </keep-alive>
+          </router-view>
+          -->
         </div>
       </q-page>
     </q-page-container>
@@ -32,13 +26,11 @@ import { useRouter } from 'vue-router'
 
 import MainLayoutHeader from './MainLayoutHeader'
 import MainLayoutDrawer from './MainLayoutDrawer'
-import MainLayoutPageHeader from './MainLayoutPageHeader'
 
 defineComponent({
   components: {
     MainLayoutHeader,
-    MainLayoutDrawer,
-    MainLayoutPageHeader
+    MainLayoutDrawer
   }
 })
 
