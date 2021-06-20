@@ -7,7 +7,12 @@
       class="q-gutter-md"
       @submit="() => console.log('ok')"
     >
-      <q-input-date v-model="date" hi="hello" />
+      <q-input-date
+        :rules="[value => 'are you crazy?']"
+        v-model="partyTonight"
+        style="width: 200px"
+      >
+      </q-input-date>
 
       <div>
         <q-btn
@@ -22,11 +27,14 @@
 <script setup="props">
 import { ref, watch } from 'vue'
 
-const date = ref(null)
+const partyTonight = ref(null)
 const time = ref(null)
 
-watch(date, next => {
-  console.log('date', date.value)
+watch(partyTonight, next => {
+  console.log(
+    'partyTonight approve-process',
+    partyTonight.value
+  )
 })
 watch(time, next => console.log('time', time.value))
 </script>

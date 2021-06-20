@@ -1,5 +1,6 @@
 import axios from 'axios'
 import menu from 'src/gqls/menu'
+import { SessionStorage } from 'quasar'
 
 export default {
   namespaced: true,
@@ -22,22 +23,26 @@ export default {
   mutations: {
     setActive(state, payload) {
       state.active = payload
+
+      if (state.tasks.every(i => payload.id !== i.id)) {
+        state.tasks = [payload, ...state.tasks]
+      }
+
+      SessionStorage.set('navigation.active', payload)
     },
     setMenus(state, payload) {
       const calculatePath = (menus, upper) => {
         return menus.map(i => {
-          i.path = (upper ? upper.path : []).concat(i.name)
+          i.path = upper
+            ? upper.path.concat(upper.name)
+            : []
           i.branches.length && calculatePath(i.branches, i)
+
           return i
         })
       }
 
       state.menus = calculatePath(payload.menus)
-    },
-    addTask(state, payload) {
-      if (state.tasks.every(i => payload.id !== i.id)) {
-        state.tasks = [payload, ...state.tasks]
-      }
     },
     removeLastTask(state, task) {
       state.tasks = state.tasks.splice(1)
@@ -46,7 +51,6 @@ export default {
   actions: {
     setActive({ commit }, payload) {
       commit('setActive', payload)
-      commit('addTask', payload)
     },
     async fetchMenus({ commit }) {
       await axios
@@ -56,9 +60,6 @@ export default {
         .then(({ data }) => {
           commit('setMenus', data.data)
         })
-    },
-    addTask({ commit }, task) {
-      commit('addTask', task)
     },
     removeLastTask({ commit }, task) {
       commit('removeLastTask', task)

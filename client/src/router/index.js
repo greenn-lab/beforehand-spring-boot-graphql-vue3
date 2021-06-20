@@ -10,6 +10,9 @@ const _addRoutes = (_routes, menus) => {
     _routes.push({
       path: menu.uri,
       name: menu.uri.toLowerCase().replace(/\//g, '-'),
+      meta: {
+        info: menu
+      },
       component: () =>
         import(`../pages${menu.uri}.vue`).catch(() =>
           import('../pages/Error404.vue')
@@ -24,7 +27,10 @@ const _addRoutes = (_routes, menus) => {
 
 export const routing = function (router, menu) {
   router.push({
-    path: menu.uri
+    path: menu.uri,
+    meta: {
+      name: menu.uri.split('').reverse()
+    }
   })
 
   document.title = menu.name
@@ -38,9 +44,16 @@ export default async ({ store }) => {
     store.getters['navigation/menus']
   )
 
-  return createRouter({
+  const router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
     routes,
     history: createWebHistory()
   })
+
+  router.beforeEach((to, from) => {
+    store.dispatch('navigation/setActive', to.meta.info)
+    return true
+  })
+
+  return router
 }
