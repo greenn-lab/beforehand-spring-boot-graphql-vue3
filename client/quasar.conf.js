@@ -27,8 +27,9 @@ module.exports = configure(function (ctx) {
     css: [
       'app.scss',
       'g-person.scss',
-      'g-page.scss',
       'g-task.scss',
+      'g-page.scss',
+      'g-form.scss',
       'g-datetime.scss'
     ],
 
