@@ -22,13 +22,21 @@ export default {
   },
   mutations: {
     setActive(state, payload) {
+      // release previous active
+      state.active.isActive = false
+
+      payload.isActive = true
       state.active = payload
 
       if (state.tasks.every(i => payload.id !== i.id)) {
         state.tasks = [payload, ...state.tasks]
       }
 
+      document.title = payload.name
       SessionStorage.set('navigation.active', payload)
+    },
+    setSpread(state) {
+      state.active.isSpread = !state.active.isSpread
     },
     setMenus(state, payload) {
       const calculatePath = (menus, upper) => {
@@ -49,8 +57,11 @@ export default {
     }
   },
   actions: {
-    setActive({ commit }, payload) {
+    setActive({ commit, state }, payload) {
       commit('setActive', payload)
+    },
+    setSpread({ commit }, payload) {
+      commit('setSpread', payload)
     },
     async fetchMenus({ commit }) {
       await axios

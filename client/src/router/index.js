@@ -25,17 +25,6 @@ const _addRoutes = (_routes, menus) => {
   })
 }
 
-export const routing = function (router, menu) {
-  router.push({
-    path: menu.uri,
-    meta: {
-      name: menu.uri.split('').reverse()
-    }
-  })
-
-  document.title = menu.name
-}
-
 export default async ({ store }) => {
   await store.dispatch('navigation/fetchMenus')
 

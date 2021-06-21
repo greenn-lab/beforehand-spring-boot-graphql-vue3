@@ -2,10 +2,10 @@
   <slot>
     <q-item
       v-ripple
-      :active="menu.id === active"
+      :active="menu.isActive"
       :depth="depth"
       clickable
-      @click="select"
+      @click="select($event)"
     >
       <q-item-section v-if="depth === 1" avatar>
         <q-icon :name="menu.icon || 'extension'" />
@@ -18,9 +18,8 @@
         icon="ion-ios-arrow-forward"
       />
     </q-item>
-
     <q-slide-transition>
-      <div v-show="isSpreadBranches" class="g-menu__child">
+      <div v-show="isSpread" class="g-menu__child">
         <div
           v-for="childMenu in menu.branches"
           :key="childMenu.id"
@@ -38,29 +37,23 @@
 
 <script setup>
 import { computed, defineProps, inject, ref } from 'vue'
-import { useStore } from 'vuex'
 
 const { menu, depth } = defineProps(['menu', 'depth'])
-const store = useStore()
 const routing = inject('routing')
 
 // ref
-const isSpreadBranches = ref(false)
+const isSpread = ref(false)
 
 // computed
 const hasChild = computed(() => !!menu.branches?.length)
-const active = computed(
-  () => store.getters['navigation/active'].id
-)
 
 // methods
-const select = () => {
-  isSpreadBranches.value = !isSpreadBranches.value
-
+const select = e => {
   if (!hasChild.value) {
-    store.dispatch('navigation/setActive', menu)
+    routing(menu)
+  } else {
+    isSpread.value =
+      e.currentTarget.classList.toggle('g-menu--open')
   }
-
-  routing(menu)
 }
 </script>

@@ -18,15 +18,13 @@
 </template>
 
 <script setup>
-import { computed, defineComponent, provide } from 'vue'
+import { computed, defineComponent, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import GMenuTitle from './GMenuTitle'
 import GMenuItem from './GMenuItem'
 
-defineComponent({
-  components: [GMenuTitle, GMenuItem]
-})
+defineComponent([GMenuTitle, GMenuItem])
 
 const store = useStore()
 const router = useRouter()
@@ -34,4 +32,16 @@ const router = useRouter()
 const menus = computed(
   () => store.getters['navigation/menus']
 )
+
+// find active from deep child
+onMounted(() => {
+  let element = document.querySelector(
+    '.g-menu .q-item--active'
+  )
+  while ((element = element.parentNode.parentNode)) {
+    if (element.classList.contains('g-menu__child')) {
+      element.previousSibling.click()
+    }
+  }
+})
 </script>

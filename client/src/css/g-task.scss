@@ -25,10 +25,15 @@
     }
   }
 
+  .q-tab__content {
+    min-height: inherit;
+  }
+
   /*.q-tab__label {
-    max-widt
+    max-width: 100px
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
   }*/
+
 }

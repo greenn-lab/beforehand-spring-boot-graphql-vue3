@@ -12,15 +12,15 @@
       margin-top: 16px;
     }
 
-    .q-textarea textarea {
-      min-height: 100px;
+    .q-textarea.q-field--labeled .q-field__native {
+      min-height: 5rem;
     }
   }
 
   &--actions {
     display: flex;
     justify-content: flex-end;
-    padding: 32px;
+    padding: 8px 32px 32px;
 
     .q-btn {
       margin-left: 16px;

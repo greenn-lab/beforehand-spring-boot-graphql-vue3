@@ -22,18 +22,15 @@
 
 <script setup>
 import { defineComponent, provide, ref } from 'vue'
+import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
 import MainLayoutHeader from './MainLayoutHeader'
 import MainLayoutDrawer from './MainLayoutDrawer'
 
-defineComponent({
-  components: {
-    MainLayoutHeader,
-    MainLayoutDrawer
-  }
-})
+defineComponent([MainLayoutHeader, MainLayoutDrawer])
 
+const store = useStore()
 const router = useRouter()
 
 // ref
@@ -42,10 +39,10 @@ const open = ref(true)
 // provides
 provide('drawerOpen', open)
 provide('routing', menu => {
+  store.dispatch('navigation/setActive', menu)
+
   router.push({
     path: menu.uri
   })
-
-  document.title = menu.name
 })
 </script>
