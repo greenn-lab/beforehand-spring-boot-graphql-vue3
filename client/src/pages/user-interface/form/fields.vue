@@ -11,14 +11,16 @@
           recommend NOT using any other form field styles as
           they are not optimized.
         </blockquote>
-        <blockquote class="g-page--text">
-          브라우저의 <code>input</code>하고
-          <code>select</code>를 사용하는 거에요. 기본적으로
-          입력란의 모양을 채우도록 변경하고 보다 고유하고
-          한결같은 특성을 제공하도록 많은 걸 바꿔요. 다른
-          방식의 입력란은 사용 안하면 싶어요. 스타일이
-          최적화되지 않았으니까요.
-        </blockquote>
+        <g-resizer ruler="100">
+          <blockquote class="g-page--text">
+            브라우저의 <code>input</code>하고
+            <code>select</code>를 사용하는 거에요.
+            기본적으로 입력란의 모양을 채우도록 변경하고
+            보다 고유하고 한결같은 특성을 제공하도록 많은 걸
+            바꿔요. 다른 방식의 입력란은 사용 안하면 싶어요.
+            스타일이 최적화되지 않았으니까요.
+          </blockquote>
+        </g-resizer>
 
         <p class="g-page--subtitle">Appearance</p>
         <div class="g-page--text">
@@ -44,8 +46,8 @@
               v-model="appearance.description"
               autogrow
               counter
-              maxlength="100"
               label="설명"
+              maxlength="100"
               type="textarea"
             >
               <template v-slot:prepend>

@@ -41,7 +41,7 @@ import { computed, defineProps, inject, ref } from 'vue'
 const { menu, depth } = defineProps(['menu', 'depth'])
 const routing = inject('routing')
 
-// ref
+// data
 const isSpread = ref(false)
 
 // computed

@@ -38,7 +38,7 @@ onMounted(() => {
   let element = document.querySelector(
     '.g-menu .q-item--active'
   )
-  while ((element = element.parentNode.parentNode)) {
+  while ((element = element?.parentNode?.parentNode)) {
     if (element.classList.contains('g-menu__child')) {
       element.previousSibling.click()
     }
