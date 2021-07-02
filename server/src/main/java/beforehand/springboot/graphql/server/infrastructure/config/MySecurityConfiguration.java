@@ -1,35 +1,12 @@
 package beforehand.springboot.graphql.server.infrastructure.config;
 
-import java.util.Optional;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 
 @Configuration
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
-  @Bean
-  AuditorAware<String> securityLinkageAuditorAware() {
-    return () -> {
-      final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      if (authentication == null) {
-        return Optional.of("{ghost}");
-      }
-
-      final Object principal = authentication.getPrincipal();
-      if (principal instanceof User) {
-        return Optional.of(((User) principal).getUsername());
-      }
-
-      return Optional.of(principal.toString());
-    };
-  }
+public class MySecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -56,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .formLogin()
         .and()
         .authorizeRequests()
-        .anyRequest().permitAll()
+        .antMatchers("/*").permitAll()
         .and()
         .anonymous().principal("Anonymous").authorities("GUEST")
     ;
