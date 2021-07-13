@@ -8,14 +8,14 @@ extend type Query {
 # structure of menu item
 type Menu {
     id: ID!
-    name: String
-    uri: String
     upperId: Int
+    name: String
+    nameAid: String
+    uri: String
     description: String
-    icon: String
+    order: Int
     badge: String
-    classes: String
-    inactive: Boolean
-    use: Boolean
-    branches: [Menu]
+    icon: String
+    attribute: String
+    children: [Menu]
 }

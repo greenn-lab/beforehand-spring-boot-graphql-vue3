@@ -9,16 +9,9 @@ extend type Query {
 type User {
     id: ID!
     email: String!
-    named: UserNamed
     username: String
     passwordExpired: Date
     locked: Boolean
-}
-
-type UserNamed {
-    name: String!
-    familyName: String
-    nickname: String
 }
 
 extend type Mutation {
@@ -32,15 +25,8 @@ extend type Mutation {
 input UserInput {
     id: ID
     email: String
-    named: UserNamedInput
     username: String
     password: String
     passwordExpired: Date
     locked: Boolean
-}
-
-input UserNamedInput {
-    name: String
-    familyName: String
-    nickname: String
 }

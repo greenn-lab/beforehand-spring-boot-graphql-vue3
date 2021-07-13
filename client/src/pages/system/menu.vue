@@ -14,13 +14,13 @@
       <div class="col-12 col-md-6">
         <div class="text-h6 q-mt-md">Ticked</div>
         <div>
+          <g-namux>Hello</g-namux>
+
           <div
             v-for="tick in ticked"
             :key="`ticked-${tick}`"
           >
             {{ tick }}
-            <hr />
-            {{ selected }}
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 spring:
   profiles:
-    include:
-      - "development"
+    active: "development"
 
 server:
   port: 8001

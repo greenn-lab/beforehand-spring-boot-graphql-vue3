@@ -1,10 +1,10 @@
 package beforehand.springboot.graphql.server.infrastructure.config;
 
-import beforehand.springboot.graphql.server.infrastructure.config.MessageSourceConfiguration.ExceptionMessageSource;
 import beforehand.springboot.graphql.server.infrastructure.graphql.GraphQLMutationNotValidException;
 import com.coxautodev.graphql.tools.ObjectMapperConfigurer;
 import com.coxautodev.graphql.tools.SchemaParserOptions;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.github.greennlab.ddul.MessageConfiguration.ExceptionMessageSource;
 import graphql.ExceptionWhileDataFetching;
 import graphql.GraphQLError;
 import graphql.language.StringValue;
