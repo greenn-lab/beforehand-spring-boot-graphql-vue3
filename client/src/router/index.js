@@ -1,8 +1,4 @@
-import {
-  createRouter,
-  createWebHistory,
-  useRouter
-} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import routes from './routes'
 
 const _addRoutes = (_routes, menus) => {
@@ -19,9 +15,8 @@ const _addRoutes = (_routes, menus) => {
         )
     })
 
-    menu.branches &&
-      menu.branches.length &&
-      _addRoutes(_routes, menu.branches)
+    menu?.children.length &&
+      _addRoutes(_routes, menu.children)
   })
 }
 
@@ -39,7 +34,7 @@ export default async ({ store }) => {
     history: createWebHistory()
   })
 
-  router.beforeEach((to, from) => {
+  router.beforeEach((to, _from) => {
     store.dispatch('navigation/setActive', to.meta.info)
     return true
   })

@@ -21,7 +21,7 @@
     <q-slide-transition>
       <div v-show="isSpread" class="g-menu__child">
         <div
-          v-for="childMenu in menu.branches"
+          v-for="childMenu in menu.children"
           :key="childMenu.id"
           class="g-menu__item"
         >
@@ -45,7 +45,7 @@ const routing = inject('routing')
 const isSpread = ref(false)
 
 // computed
-const hasChild = computed(() => !!menu.branches?.length)
+const hasChild = computed(() => !!menu.children?.length)
 
 // methods
 const select = e => {

@@ -8,7 +8,7 @@
     <g-menu-title :menu="menu" />
 
     <div
-      v-for="childMenu in menu.branches"
+      v-for="childMenu in menu.children"
       :key="childMenu.id"
       class="g-menu__item"
     >

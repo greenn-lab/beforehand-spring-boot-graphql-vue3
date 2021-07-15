@@ -45,7 +45,7 @@ const simple = computed(() => {
     menus.map(menu => ({
       id: menu.id,
       label: menu.name,
-      children: menuToTree(menu.branches)
+      children: menuToTree(menu.children)
     }))
 
   const children = menuToTree(

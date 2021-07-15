@@ -3,53 +3,65 @@ export default {
 query {
   menus {
     id
-    name
-    uri
     upperId
+    name
+    nameAid
+    uri
     description
-    icon
-    classes
+    order
     badge
-    branches {
+    icon
+    attribute
+    children {
       id
       name
+      nameAid
       uri
       description
-      icon
-      classes
+      order
       badge
-      branches {
+      icon
+      attribute
+      children {
         id
         name
+        nameAid
         uri
         description
-        icon
-        classes
+        order
         badge
-        branches {
+        icon
+        attribute
+        children {
           id
           name
+          nameAid
           uri
           description
-          icon
-          classes
+          order
           badge
-          branches {
+          icon
+          attribute
+          children {
             id
             name
+            nameAid
             uri
             description
-            icon
-            classes
+            order
             badge
-            branches {
+            icon
+            attribute
+            children {
               id
               name
+              nameAid
               uri
               description
-              icon
-              classes
+              order
               badge
+              icon
+              attribute
             }
           }
         }

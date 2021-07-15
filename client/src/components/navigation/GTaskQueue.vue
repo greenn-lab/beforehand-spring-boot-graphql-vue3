@@ -9,7 +9,6 @@
     <q-tab
       v-for="task in tasks"
       :key="task.id"
-      v-bind="task"
       :label="task.name"
       :name="task.id"
       @click="routing(task)"
@@ -36,7 +35,7 @@ const active = computed(
 const tab = ref(active.value.id)
 
 // watch
-watch(tab, next => {
+watch(tab, () => {
   store.dispatch(
     'navigation/setActive',
     tasks.value.find(task => task.id === tab.value)
