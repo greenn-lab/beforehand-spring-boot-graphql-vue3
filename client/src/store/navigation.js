@@ -25,6 +25,10 @@ export default {
       // release previous active
       state.active.isActive = false
 
+      if (!payload) {
+        return
+      }
+
       payload.isActive = true
       state.active = payload
 
@@ -44,7 +48,8 @@ export default {
           i.path = upper
             ? upper.path.concat(upper.name)
             : []
-          i.branches.length && calculatePath(i.branches, i)
+
+          i.children.length && calculatePath(i.children, i)
 
           return i
         })
@@ -52,7 +57,7 @@ export default {
 
       state.menus = calculatePath(payload.menus)
     },
-    removeLastTask(state, task) {
+    removeLastTask(state) {
       state.tasks = state.tasks.splice(1)
     }
   },
