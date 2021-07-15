@@ -3,7 +3,6 @@ package beforehand.springboot.graphql.server.management.user.service;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.github.greennlab.ddul.user.User;
-import com.github.greennlab.ddul.user.User.UserOf;
 import com.github.greennlab.ddul.user.repository.DDulUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +30,7 @@ public class UserGraphQLService implements GraphQLQueryResolver, GraphQLMutation
 
   //  @PreAuthorize("hasRole('MANAGER')")
   public User saveUser(@Validated User.Dto dto) {
-    final User user = UserOf.mapped.by(dto);
+    final User user = User.mapped.by(dto);
 
     return repository.save(user);
   }

@@ -4,7 +4,7 @@ import beforehand.springboot.graphql.server.infrastructure.graphql.GraphQLMutati
 import com.coxautodev.graphql.tools.ObjectMapperConfigurer;
 import com.coxautodev.graphql.tools.SchemaParserOptions;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.github.greennlab.ddul.MessageConfiguration.ExceptionMessageSource;
+import com.github.greennlab.ddul.DDulMessageConfiguration.ExceptionMessageSource;
 import graphql.ExceptionWhileDataFetching;
 import graphql.GraphQLError;
 import graphql.language.StringValue;
