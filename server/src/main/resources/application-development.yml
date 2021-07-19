@@ -10,7 +10,7 @@ spring:
 
   datasource:
     driver-class-name: "org.h2.Driver"
-    url: "jdbc:h2:./db;AUTO_SERVER=TRUE"
+    url: "jdbc:h2:./db;AUTO_SERVER=TRUE;"
     username: "sa"
     password: "11"
 
@@ -22,3 +22,6 @@ spring:
 logging:
   pattern:
     console: "%highlight(%-5level) %d{HH:mm:ss.SSS}[%green(%thread)]%magenta(%logger{36}) %msg %n"
+
+server:
+  port: 8001
